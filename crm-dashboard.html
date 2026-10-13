@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hospitalita & Inovacao | CRM Performance Dashboard</title>
+<style>
+:root {
+  --primary: #1F4E79;
+  --secondary: #2E75B6;
+  --accent: #F4B942;
+  --success: #27AE60;
+  --warning: #F39C12;
+  --danger: #E74C3C;
+  --bg: #F4F6F9;
+  --card: #FFFFFF;
+  --text: #2C3E50;
+  --muted: #7F8C8D;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; }
+.header { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 24px 32px; }
+.header h1 { font-size: 28px; font-weight: 700; }
+.header p { opacity: 0.9; margin-top: 4px; }
+.container { max-width: 1200px; margin: 0 auto; padding: 24px; }
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 28px; }
+.kpi-card { background: var(--card); border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); position: relative; overflow: hidden; }
+.kpi-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--secondary); }
+.kpi-card.success::before { background: var(--success); }
+.kpi-card.warning::before { background: var(--warning); }
+.kpi-card.danger::before { background: var(--danger); }
+.kpi-label { font-size: 13px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+.kpi-value { font-size: 32px; font-weight: 700; margin: 6px 0; color: var(--primary); }
+.kpi-sub { font-size: 12px; color: var(--muted); }
+.progress-bar { height: 8px; background: #E8EEF4; border-radius: 4px; margin-top: 10px; overflow: hidden; }
+.progress-fill { height: 100%; border-radius: 4px; transition: width 0.4s ease; }
+.section { background: var(--card); border-radius: 12px; padding: 24px; margin-bottom: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.section h2 { font-size: 18px; color: var(--primary); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th { text-align: left; padding: 12px 10px; background: #F8FAFC; color: var(--primary); font-weight: 600; border-bottom: 2px solid #E8EEF4; }
+td { padding: 12px 10px; border-bottom: 1px solid #F0F3F7; }
+tr:hover { background: #F8FBFF; }
+.badge { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+.badge.on-track { background: #E8F8EF; color: var(--success); }
+.badge.at-risk { background: #FEF5E7; color: var(--warning); }
+.badge.behind { background: #FDEDEC; color: var(--danger); }
+.badge.ahead { background: #EBF5FB; color: var(--secondary); }
+.staff-row { display: flex; align-items: center; gap: 12px; }
+.avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--secondary); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; }
+.note { font-size: 13px; color: var(--muted); margin-top: 12px; padding: 12px; background: #F8FAFC; border-radius: 8px; }
+@media (max-width: 600px) { .container { padding: 16px; } .kpi-value { font-size: 26px; } }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>Hospitalita & Inovacao CRM Dashboard</h1>
+  <p>Marketing & Sales Performance • Leads • Prospects • Conversions • Targets • October 2026</p>
+</div>
+
+<div class="container">
+  <div class="kpi-grid">
+    <div class="kpi-card success">
+      <div class="kpi-label">Total Leads</div>
+      <div class="kpi-value">42</div>
+      <div class="kpi-sub">Target: 50 • 84%</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:84%;background:var(--success);"></div></div>
+    </div>
+    <div class="kpi-card warning">
+      <div class="kpi-label">Qualified Prospects</div>
+      <div class="kpi-value">18</div>
+      <div class="kpi-sub">Target: 25 • 72%</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:72%;background:var(--warning);"></div></div>
+    </div>
+    <div class="kpi-card success">
+      <div class="kpi-label">Conversions (Won)</div>
+      <div class="kpi-value">9</div>
+      <div class="kpi-sub">Target: 10 • 90%</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:90%;background:var(--success);"></div></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Conversion Rate</div>
+      <div class="kpi-value">21.4%</div>
+      <div class="kpi-sub">Target: 20% • On Track</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:100%;background:var(--secondary);"></div></div>
+    </div>
+    <div class="kpi-card warning">
+      <div class="kpi-label">Pipeline Value</div>
+      <div class="kpi-value">₦4.2M</div>
+      <div class="kpi-sub">Target: ₦5.0M • 84%</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:84%;background:var(--warning);"></div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>🏆 Team Performance Leaderboard</h2>
+    <table>
+      <thead>
+        <tr><th>Staff</th><th>Leads</th><th>Prospects</th><th>Won</th><th>Value Closed</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><div class="staff-row"><div class="avatar">CA</div> Chioma A.</div></td>
+          <td>14</td><td>7</td><td>4</td><td>₦1.85M</td>
+          <td><span class="badge ahead">Ahead</span></td>
+        </tr>
+        <tr>
+          <td><div class="staff-row"><div class="avatar">EO</div> Emeka O.</div></td>
+          <td>11</td><td>5</td><td>3</td><td>₦1.20M</td>
+          <td><span class="badge on-track">On Track</span></td>
+        </tr>
+        <tr>
+          <td><div class="staff-row"><div class="avatar">FB</div> Funmi B.</div></td>
+          <td>9</td><td>4</td><td>2</td><td>₦680K</td>
+          <td><span class="badge on-track">On Track</span></td>
+        </tr>
+        <tr>
+          <td><div class="staff-row"><div class="avatar">KA</div> Kunle A.</div></td>
+          <td>8</td><td>2</td><td>0</td><td>₦0</td>
+          <td><span class="badge at-risk">At Risk</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="note">Status is calculated against individual monthly targets. Green = Ahead/On Track • Amber = At Risk • Red = Behind. Update numbers weekly to keep pressure and visibility high.</div>
+  </div>
+
+  <div class="section">
+    <h2>📊 Performance by Brand / Company</h2>
+    <table>
+      <thead>
+        <tr><th>Brand</th><th>Leads</th><th>Prospects</th><th>Won</th><th>Conv. Rate</th><th>Pipeline</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Posh Hotels & Suites</td><td>12</td><td>6</td><td>3</td><td>25%</td><td>₦1.8M</td></tr>
+        <tr><td>Hotel Per Hour</td><td>9</td><td>4</td><td>2</td><td>22%</td><td>₦720K</td></tr>
+        <tr><td>Streetfood NG</td><td>8</td><td>3</td><td>2</td><td>25%</td><td>₦280K</td></tr>
+        <tr><td>Inovacao Ltd</td><td>6</td><td>3</td><td>1</td><td>17%</td><td>₦850K</td></tr>
+        <tr><td>Gold Privilege</td><td>5</td><td>2</td><td>1</td><td>20%</td><td>₦450K</td></tr>
+        <tr><td>Amazonas / Creatif</td><td>2</td><td>0</td><td>0</td><td>0%</td><td>₦100K</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>🔄 Pipeline Funnel</h2>
+    <table>
+      <thead>
+        <tr><th>Stage</th><th>Count</th><th>% of Total</th><th>Value</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>New Lead</td><td>15</td><td>36%</td><td>₦1.1M</td></tr>
+        <tr><td>Prospect</td><td>10</td><td>24%</td><td>₦980K</td></tr>
+        <tr><td>Qualified</td><td>8</td><td>19%</td><td>₦1.2M</td></tr>
+        <tr><td>Proposal</td><td>5</td><td>12%</td><td>₦920K</td></tr>
+        <tr><td>Won</td><td>9</td><td>—</td><td>₦3.73M</td></tr>
+        <tr><td>Lost</td><td>4</td><td>—</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>📌 How to Use This Dashboard</h2>
+    <p>This is a live cloud report designed to keep your marketing and sales team focused on targets.</p>
+    <ul style="margin: 12px 0 0 20px; line-height: 1.8;">
+      <li><strong>Weekly Update:</strong> Staff or team lead updates the numbers in the source (or we can connect a live data source later).</li>
+      <li><strong>Visibility = Pressure:</strong> Share this link in your team WhatsApp/Slack. Everyone sees who is ahead and who is at risk.</li>
+      <li><strong>Status Rules:</strong> ≥100% = Ahead • 80–99% = On Track • 60–79% = At Risk • <60% = Behind.</li>
+      <li><strong>Brands covered:</strong> Posh Hotels & Suites, Hotel Per Hour, Streetfood NG, Amazonas/Creatif, Gold Privilege, Inovacao Ltd.</li>
+    </ul>
+    <div class="note">
+      <strong>Next step for full collaboration:</strong> For a fully editable cloud version where your team can add leads directly, connect Google Drive so I can generate a live Google Sheets version with automatic formulas, or use Notion/Airtable. This dashboard is the visual “push” layer.
+    </div>
+  </div>
+</div>
+</body>
+</html>
