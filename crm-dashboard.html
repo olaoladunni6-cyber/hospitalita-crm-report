@@ -48,6 +48,10 @@ tr:hover { background: #F8FBFF; }
 .staff-row { display: flex; align-items: center; gap: 12px; }
 .avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--secondary); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; }
 .note { font-size: 13px; color: var(--muted); margin-top: 12px; padding: 12px; background: #F8FAFC; border-radius: 8px; }
+.reminder-box { background: #F8FBFF; border: 1px solid #D6E6F5; border-radius: 8px; padding: 16px; margin: 12px 0; position: relative; }
+.reminder-box pre { white-space: pre-wrap; font-family: inherit; font-size: 13.5px; margin: 8px 0; }
+.copy-btn { background: var(--secondary); color: white; border: none; padding: 6px 12px; border-radius: 6px; font-size: 12px; cursor: pointer; float: right; }
+.copy-btn:hover { background: var(--primary); }
 @media (max-width: 600px) { .container { padding: 16px; } .kpi-value { font-size: 26px; } }
 </style>
 </head>
@@ -62,19 +66,19 @@ tr:hover { background: #F8FBFF; }
     <div class="kpi-card success">
       <div class="kpi-label">Total Leads</div>
       <div class="kpi-value">42</div>
-      <div class="kpi-sub">Target: 50 • 84%</div>
+      <div class="kpi-sub">Monthly Target: 50 • 84%</div>
       <div class="progress-bar"><div class="progress-fill" style="width:84%;background:var(--success);"></div></div>
     </div>
     <div class="kpi-card warning">
       <div class="kpi-label">Qualified Prospects</div>
       <div class="kpi-value">18</div>
-      <div class="kpi-sub">Target: 25 • 72%</div>
+      <div class="kpi-sub">Monthly Target: 25 • 72%</div>
       <div class="progress-bar"><div class="progress-fill" style="width:72%;background:var(--warning);"></div></div>
     </div>
     <div class="kpi-card success">
       <div class="kpi-label">Conversions (Won)</div>
       <div class="kpi-value">9</div>
-      <div class="kpi-sub">Target: 10 • 90%</div>
+      <div class="kpi-sub">Monthly Target: 10 • 90%</div>
       <div class="progress-bar"><div class="progress-fill" style="width:90%;background:var(--success);"></div></div>
     </div>
     <div class="kpi-card">
@@ -86,9 +90,27 @@ tr:hover { background: #F8FBFF; }
     <div class="kpi-card warning">
       <div class="kpi-label">Pipeline Value</div>
       <div class="kpi-value">₦4.2M</div>
-      <div class="kpi-sub">Target: ₦5.0M • 84%</div>
+      <div class="kpi-sub">Monthly Target: ₦5.0M • 84%</div>
       <div class="progress-bar"><div class="progress-fill" style="width:84%;background:var(--warning);"></div></div>
     </div>
+  </div>
+
+  <div class="section">
+    <h2>📅 Daily Targets (October 2026)</h2>
+    <p style="margin-bottom:12px; color:var(--muted); font-size:14px;">Based on ~22 working days this month. Focus on these daily numbers to stay on track.</p>
+    <table>
+      <thead>
+        <tr><th>Metric</th><th>Monthly Target</th><th>Daily Target</th><th>Today's Actual</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>New Leads</td><td>50</td><td>2.3</td><td>2</td><td><span class="badge on-track">On Track</span></td></tr>
+        <tr><td>Qualified Prospects</td><td>25</td><td>1.1</td><td>1</td><td><span class="badge on-track">On Track</span></td></tr>
+        <tr><td>Conversions (Won)</td><td>10</td><td>0.45</td><td>0</td><td><span class="badge at-risk">At Risk</span></td></tr>
+        <tr><td>Follow-ups / Activities</td><td>100</td><td>4.5</td><td>5</td><td><span class="badge ahead">Ahead</span></td></tr>
+        <tr><td>Pipeline Added (₦)</td><td>5,000,000</td><td>227,000</td><td>180,000</td><td><span class="badge at-risk">At Risk</span></td></tr>
+      </tbody>
+    </table>
+    <div class="note">Daily targets are calculated as Monthly Target ÷ 22 working days. Update "Today's Actual" every evening. Aim to hit or exceed daily targets to protect the monthly numbers.</div>
   </div>
 
   <div class="section">
@@ -120,7 +142,74 @@ tr:hover { background: #F8FBFF; }
         </tr>
       </tbody>
     </table>
-    <div class="note">Status is calculated against individual monthly targets. Green = Ahead/On Track • Amber = At Risk • Red = Behind. Update numbers weekly to keep pressure and visibility high.</div>
+    <div class="note">Status is calculated against individual monthly targets. Green = Ahead/On Track • Amber = At Risk • Red = Behind.</div>
+  </div>
+
+  <div class="section">
+    <h2>💬 WhatsApp Reminders</h2>
+    <p style="margin-bottom:16px; color:var(--muted);">Copy and send these ready-made messages. Customize names and numbers as needed.</p>
+
+    <div class="reminder-box">
+      <button class="copy-btn" onclick="copyReminder(this)">Copy</button>
+      <strong>Morning Push (Team)</strong>
+      <pre>Good morning Team 🚀
+
+Today’s Daily Targets:
+• New Leads: 2–3
+• Qualified Prospects: 1
+• Follow-ups: 4–5
+• Pipeline: ₦200k+
+
+Let’s hit these numbers early. Who’s starting strong? Drop your first lead or follow-up here 👇
+
+#Hospitalita #Inovacao #CRM</pre>
+    </div>
+
+    <div class="reminder-box">
+      <button class="copy-btn" onclick="copyReminder(this)">Copy</button>
+      <strong>At Risk Reminder (Individual)</strong>
+      <pre>Hi [Name],
+
+Just checking in on today’s targets. You’re currently At Risk on conversions/pipeline.
+
+Daily target left:
+• 1 more qualified prospect or
+• 1 follow-up that can convert
+
+You’ve done this before — let’s close the gap before end of day. Reply with your next action.
+
+You’ve got this! 💪</pre>
+    </div>
+
+    <div class="reminder-box">
+      <button class="copy-btn" onclick="copyReminder(this)">Copy</button>
+      <strong>End of Day Recap</strong>
+      <pre>End of Day Update 📊
+
+Daily Targets Status:
+• Leads: [X]/2.3
+• Prospects: [X]/1.1
+• Won: [X]
+• Follow-ups: [X]/4.5
+
+Team Leaderboard snapshot is live on the dashboard. Let’s review what’s working and adjust for tomorrow.
+
+Great effort today — keep pushing! 🔥</pre>
+    </div>
+
+    <div class="reminder-box">
+      <button class="copy-btn" onclick="copyReminder(this)">Copy</button>
+      <strong>Celebration (Ahead)</strong>
+      <pre>🔥 Well done [Name]!
+
+You’re Ahead of target this week. Excellent work on [specific achievement].
+
+Keep the momentum — your performance is lifting the whole team. Proud of you! 👏</pre>
+    </div>
+
+    <div class="note">
+      <strong>How to use:</strong> Click “Copy”, paste into WhatsApp, edit the placeholders, and send. Send the Morning Push every weekday at 8–9am. Send individual At Risk messages by 2pm if someone is behind.
+    </div>
   </div>
 
   <div class="section">
@@ -159,17 +248,25 @@ tr:hover { background: #F8FBFF; }
 
   <div class="section">
     <h2>📌 How to Use This Dashboard</h2>
-    <p>This is a live cloud report designed to keep your marketing and sales team focused on targets.</p>
     <ul style="margin: 12px 0 0 20px; line-height: 1.8;">
-      <li><strong>Weekly Update:</strong> Staff or team lead updates the numbers in the source (or we can connect a live data source later).</li>
-      <li><strong>Visibility = Pressure:</strong> Share this link in your team WhatsApp/Slack. Everyone sees who is ahead and who is at risk.</li>
+      <li><strong>Daily Targets:</strong> Review and update “Today’s Actual” every day.</li>
+      <li><strong>WhatsApp Reminders:</strong> Use the ready messages to push the team.</li>
+      <li><strong>Visibility = Pressure:</strong> Share this link in your team WhatsApp. Everyone sees who is ahead and who is at risk.</li>
       <li><strong>Status Rules:</strong> ≥100% = Ahead • 80–99% = On Track • 60–79% = At Risk • <60% = Behind.</li>
-      <li><strong>Brands covered:</strong> Posh Hotels & Suites, Hotel Per Hour, Streetfood NG, Amazonas/Creatif, Gold Privilege, Inovacao Ltd.</li>
     </ul>
-    <div class="note">
-      <strong>Next step for full collaboration:</strong> For a fully editable cloud version where your team can add leads directly, connect Google Drive so I can generate a live Google Sheets version with automatic formulas, or use Notion/Airtable. This dashboard is the visual “push” layer.
-    </div>
   </div>
 </div>
+
+<script>
+function copyReminder(btn) {
+  const pre = btn.parentElement.querySelector('pre');
+  const text = pre.innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    const original = btn.innerText;
+    btn.innerText = 'Copied!';
+    setTimeout(() => btn.innerText = original, 1500);
+  });
+}
+</script>
 </body>
 </html>
