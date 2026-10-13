@@ -6,7 +6,10 @@ Captures: Leads | Prospects | Conversions | Targets
 
 ## Download the Full Excel Template
 
-The complete interactive Excel workbook (with Dashboard, formulas, dropdowns, and targets) is available as `CRM_Report_Hospitalita_Inovacao.xlsx` in the conversation artifacts.
+**Direct Download Link (temporary, ~7 days):**  
+https://d.tmpfile.link/public/2026-10-13/4d1d0e01-65ca-4928-9016-6e2de6af5fa1/CRM_Report_Hospitalita_Inovacao.xlsx
+
+The complete interactive Excel workbook (with Dashboard, formulas, dropdowns, and targets).
 
 ### Sheets Included
 1. **Dashboard** - Live KPIs, brand performance, pipeline funnel
@@ -23,7 +26,7 @@ The complete interactive Excel workbook (with Dashboard, formulas, dropdowns, an
 - Professional formatting, filters, and auto-calculations
 
 ### How to Use
-1. Download the .xlsx file
+1. Download the .xlsx file using the link above
 2. Open in Microsoft Excel or Google Sheets (upload to Google Drive)
 3. Enter new leads starting from row 8 on the Lead Tracker sheet
 4. Update Status and Owner as opportunities progress
