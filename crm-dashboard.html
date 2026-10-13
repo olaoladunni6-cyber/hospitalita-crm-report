@@ -5,18 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hospitalita & Inovacao | CRM Performance Dashboard</title>
 <style>
-:root {
-  --primary: #1F4E79;
-  --secondary: #2E75B6;
-  --accent: #F4B942;
-  --success: #27AE60;
-  --warning: #F39C12;
-  --danger: #E74C3C;
-  --bg: #F4F6F9;
-  --card: #FFFFFF;
-  --text: #2C3E50;
-  --muted: #7F8C8D;
-}
+:root { --primary: #1F4E79; --secondary: #2E75B6; --accent: #F4B942; --success: #27AE60; --warning: #F39C12; --danger: #E74C3C; --bg: #F4F6F9; --card: #FFFFFF; --text: #2C3E50; --muted: #7F8C8D; }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; }
 .header { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 24px 32px; }
@@ -35,11 +24,10 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color:
 .progress-bar { height: 8px; background: #E8EEF4; border-radius: 4px; margin-top: 10px; overflow: hidden; }
 .progress-fill { height: 100%; border-radius: 4px; transition: width 0.4s ease; }
 .section { background: var(--card); border-radius: 12px; padding: 24px; margin-bottom: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
-.section h2 { font-size: 18px; color: var(--primary); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+.section h2 { font-size: 18px; color: var(--primary); margin-bottom: 16px; }
 table { width: 100%; border-collapse: collapse; font-size: 14px; }
 th { text-align: left; padding: 12px 10px; background: #F8FAFC; color: var(--primary); font-weight: 600; border-bottom: 2px solid #E8EEF4; }
 td { padding: 12px 10px; border-bottom: 1px solid #F0F3F7; }
-tr:hover { background: #F8FBFF; }
 .badge { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
 .badge.on-track { background: #E8F8EF; color: var(--success); }
 .badge.at-risk { background: #FEF5E7; color: var(--warning); }
@@ -50,109 +38,40 @@ tr:hover { background: #F8FBFF; }
 .note { font-size: 13px; color: var(--muted); margin-top: 12px; padding: 12px; background: #F8FAFC; border-radius: 8px; }
 .reminder-box { background: #F8FBFF; border: 1px solid #D6E6F5; border-radius: 8px; padding: 16px; margin: 12px 0; position: relative; }
 .reminder-box pre { white-space: pre-wrap; font-family: inherit; font-size: 13.5px; margin: 8px 0; }
-.copy-btn { background: var(--secondary); color: white; border: none; padding: 6px 12px; border-radius: 6px; font-size: 12px; cursor: pointer; float: right; }
-.copy-btn:hover { background: var(--primary); }
-@media (max-width: 600px) { .container { padding: 16px; } .kpi-value { font-size: 26px; } }
+.copy-btn, .update-btn { background: var(--secondary); color: white; border: none; padding: 8px 16px; border-radius: 6px; font-size: 13px; cursor: pointer; }
+.copy-btn:hover, .update-btn:hover { background: var(--primary); }
+.actual-input { width: 90px; padding: 4px 8px; border: 1px solid #D6E6F5; border-radius: 4px; font-size: 14px; text-align: right; }
+.update-row { margin-top: 16px; display: flex; gap: 12px; align-items: center; }
 </style>
 </head>
 <body>
-<div class="header">
-  <h1>Hospitalita & Inovacao CRM Dashboard</h1>
-  <p>Marketing & Sales Performance • Leads • Prospects • Conversions • Targets • October 2026</p>
-</div>
-
+<div class="header"><h1>Hospitalita & Inovacao CRM Dashboard</h1><p>Marketing & Sales Performance • Leads • Prospects • Conversions • Targets • October 2026</p></div>
 <div class="container">
-  <div class="kpi-grid">
-    <div class="kpi-card success">
-      <div class="kpi-label">Total Leads</div>
-      <div class="kpi-value">42</div>
-      <div class="kpi-sub">Monthly Target: 50 • 84%</div>
-      <div class="progress-bar"><div class="progress-fill" style="width:84%;background:var(--success);"></div></div>
-    </div>
-    <div class="kpi-card warning">
-      <div class="kpi-label">Qualified Prospects</div>
-      <div class="kpi-value">18</div>
-      <div class="kpi-sub">Monthly Target: 25 • 72%</div>
-      <div class="progress-bar"><div class="progress-fill" style="width:72%;background:var(--warning);"></div></div>
-    </div>
-    <div class="kpi-card success">
-      <div class="kpi-label">Conversions (Won)</div>
-      <div class="kpi-value">9</div>
-      <div class="kpi-sub">Monthly Target: 10 • 90%</div>
-      <div class="progress-bar"><div class="progress-fill" style="width:90%;background:var(--success);"></div></div>
-    </div>
-    <div class="kpi-card">
-      <div class="kpi-label">Conversion Rate</div>
-      <div class="kpi-value">21.4%</div>
-      <div class="kpi-sub">Target: 20% • On Track</div>
-      <div class="progress-bar"><div class="progress-fill" style="width:100%;background:var(--secondary);"></div></div>
-    </div>
-    <div class="kpi-card warning">
-      <div class="kpi-label">Pipeline Value</div>
-      <div class="kpi-value">₦4.2M</div>
-      <div class="kpi-sub">Monthly Target: ₦5.0M • 84%</div>
-      <div class="progress-bar"><div class="progress-fill" style="width:84%;background:var(--warning);"></div></div>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>📅 Daily Targets (October 2026)</h2>
-    <p style="margin-bottom:12px; color:var(--muted); font-size:14px;">Based on ~22 working days this month. Focus on these daily numbers to stay on track.</p>
-    <table>
-      <thead>
-        <tr><th>Metric</th><th>Monthly Target</th><th>Daily Target</th><th>Today's Actual</th><th>Status</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>New Leads</td><td>50</td><td>2.3</td><td>2</td><td><span class="badge on-track">On Track</span></td></tr>
-        <tr><td>Qualified Prospects</td><td>25</td><td>1.1</td><td>1</td><td><span class="badge on-track">On Track</span></td></tr>
-        <tr><td>Conversions (Won)</td><td>10</td><td>0.45</td><td>0</td><td><span class="badge at-risk">At Risk</span></td></tr>
-        <tr><td>Follow-ups / Activities</td><td>100</td><td>4.5</td><td>5</td><td><span class="badge ahead">Ahead</span></td></tr>
-        <tr><td>Pipeline Added (₦)</td><td>5,000,000</td><td>227,000</td><td>180,000</td><td><span class="badge at-risk">At Risk</span></td></tr>
-      </tbody>
-    </table>
-    <div class="note">Daily targets are calculated as Monthly Target ÷ 22 working days. Update "Today's Actual" every evening. Aim to hit or exceed daily targets to protect the monthly numbers.</div>
-  </div>
-
-  <div class="section">
-    <h2>🏆 Team Performance Leaderboard</h2>
-    <table>
-      <thead>
-        <tr><th>Staff</th><th>Leads</th><th>Prospects</th><th>Won</th><th>Value Closed</th><th>Status</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><div class="staff-row"><div class="avatar">CA</div> Chioma A.</div></td>
-          <td>14</td><td>7</td><td>4</td><td>₦1.85M</td>
-          <td><span class="badge ahead">Ahead</span></td>
-        </tr>
-        <tr>
-          <td><div class="staff-row"><div class="avatar">EO</div> Emeka O.</div></td>
-          <td>11</td><td>5</td><td>3</td><td>₦1.20M</td>
-          <td><span class="badge on-track">On Track</span></td>
-        </tr>
-        <tr>
-          <td><div class="staff-row"><div class="avatar">FB</div> Funmi B.</div></td>
-          <td>9</td><td>4</td><td>2</td><td>₦680K</td>
-          <td><span class="badge on-track">On Track</span></td>
-        </tr>
-        <tr>
-          <td><div class="staff-row"><div class="avatar">KA</div> Kunle A.</div></td>
-          <td>8</td><td>2</td><td>0</td><td>₦0</td>
-          <td><span class="badge at-risk">At Risk</span></td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="note">Status is calculated against individual monthly targets. Green = Ahead/On Track • Amber = At Risk • Red = Behind.</div>
-  </div>
-
-  <div class="section">
-    <h2>💬 WhatsApp Reminders</h2>
-    <p style="margin-bottom:16px; color:var(--muted);">Copy and send these ready-made messages. Customize names and numbers as needed.</p>
-
-    <div class="reminder-box">
-      <button class="copy-btn" onclick="copyReminder(this)">Copy</button>
-      <strong>Morning Push (Team)</strong>
-      <pre>Good morning Team 🚀
+<div class="kpi-grid">
+<div class="kpi-card success"><div class="kpi-label">Total Leads</div><div class="kpi-value">42</div><div class="kpi-sub">Monthly Target: 50 • 84%</div><div class="progress-bar"><div class="progress-fill" style="width:84%;background:var(--success);"></div></div></div>
+<div class="kpi-card warning"><div class="kpi-label">Qualified Prospects</div><div class="kpi-value">18</div><div class="kpi-sub">Monthly Target: 25 • 72%</div><div class="progress-bar"><div class="progress-fill" style="width:72%;background:var(--warning);"></div></div></div>
+<div class="kpi-card success"><div class="kpi-label">Conversions (Won)</div><div class="kpi-value">9</div><div class="kpi-sub">Monthly Target: 10 • 90%</div><div class="progress-bar"><div class="progress-fill" style="width:90%;background:var(--success);"></div></div></div>
+<div class="kpi-card"><div class="kpi-label">Conversion Rate</div><div class="kpi-value">21.4%</div><div class="kpi-sub">Target: 20% • On Track</div><div class="progress-bar"><div class="progress-fill" style="width:100%;background:var(--secondary);"></div></div></div>
+<div class="kpi-card warning"><div class="kpi-label">Pipeline Value</div><div class="kpi-value">₦4.2M</div><div class="kpi-sub">Monthly Target: ₦5.0M • 84%</div><div class="progress-bar"><div class="progress-fill" style="width:84%;background:var(--warning);"></div></div></div>
+</div>
+<div class="section"><h2>📅 Daily Targets (October 2026)</h2><p style="margin-bottom:12px; color:var(--muted); font-size:14px;">Based on ~22 working days this month. Update Today's Actual and click the button to refresh status.</p>
+<table id="daily-table"><thead><tr><th>Metric</th><th>Monthly Target</th><th>Daily Target</th><th>Today's Actual</th><th>Status</th></tr></thead><tbody>
+<tr data-key="leads" data-target="2.3"><td>New Leads</td><td>50</td><td>2.3</td><td><input type="number" step="0.1" class="actual-input" id="actual-leads" value="2"></td><td><span class="badge on-track" id="status-leads">On Track</span></td></tr>
+<tr data-key="prospects" data-target="1.1"><td>Qualified Prospects</td><td>25</td><td>1.1</td><td><input type="number" step="0.1" class="actual-input" id="actual-prospects" value="1"></td><td><span class="badge on-track" id="status-prospects">On Track</span></td></tr>
+<tr data-key="won" data-target="0.45"><td>Conversions (Won)</td><td>10</td><td>0.45</td><td><input type="number" step="0.1" class="actual-input" id="actual-won" value="0"></td><td><span class="badge at-risk" id="status-won">At Risk</span></td></tr>
+<tr data-key="followups" data-target="4.5"><td>Follow-ups / Activities</td><td>100</td><td>4.5</td><td><input type="number" step="0.1" class="actual-input" id="actual-followups" value="5"></td><td><span class="badge ahead" id="status-followups">Ahead</span></td></tr>
+<tr data-key="pipeline" data-target="227000"><td>Pipeline Added (₦)</td><td>5,000,000</td><td>227,000</td><td><input type="number" step="1000" class="actual-input" id="actual-pipeline" value="180000"></td><td><span class="badge at-risk" id="status-pipeline">At Risk</span></td></tr>
+</tbody></table>
+<div class="update-row"><button class="update-btn" onclick="updateDailyTargets()">Update Daily Targets</button><span id="update-msg" style="font-size:13px; color:var(--success); display:none;">✓ Updated & saved</span></div>
+<div class="note">Values are saved in your browser. Status updates based on: ≥100% = Ahead • 80–99% = On Track • 60–79% = At Risk • <60% = Behind.</div></div>
+<div class="section"><h2>🏆 Team Performance Leaderboard</h2><table><thead><tr><th>Staff</th><th>Leads</th><th>Prospects</th><th>Won</th><th>Value Closed</th><th>Status</th></tr></thead><tbody>
+<tr><td><div class="staff-row"><div class="avatar">CA</div> Chioma A.</div></td><td>14</td><td>7</td><td>4</td><td>₦1.85M</td><td><span class="badge ahead">Ahead</span></td></tr>
+<tr><td><div class="staff-row"><div class="avatar">EO</div> Emeka O.</div></td><td>11</td><td>5</td><td>3</td><td>₦1.20M</td><td><span class="badge on-track">On Track</span></td></tr>
+<tr><td><div class="staff-row"><div class="avatar">FB</div> Funmi B.</div></td><td>9</td><td>4</td><td>2</td><td>₦680K</td><td><span class="badge on-track">On Track</span></td></tr>
+<tr><td><div class="staff-row"><div class="avatar">KA</div> Kunle A.</div></td><td>8</td><td>2</td><td>0</td><td>₦0</td><td><span class="badge at-risk">At Risk</span></td></tr>
+</tbody></table><div class="note">Status is calculated against individual monthly targets.</div></div>
+<div class="section"><h2>💬 WhatsApp Reminders</h2><p style="margin-bottom:16px; color:var(--muted);">Copy and send these ready-made messages.</p>
+<div class="reminder-box"><button class="copy-btn" onclick="copyReminder(this)">Copy</button><strong>Morning Push (Team)</strong><pre>Good morning Team 🚀
 
 Today’s Daily Targets:
 • New Leads: 2–3
@@ -162,111 +81,41 @@ Today’s Daily Targets:
 
 Let’s hit these numbers early. Who’s starting strong? Drop your first lead or follow-up here 👇
 
-#Hospitalita #Inovacao #CRM</pre>
-    </div>
+#Hospitalita #Inovacao #CRM</pre></div>
+<div class="reminder-box"><button class="copy-btn" onclick="copyReminder(this)">Copy</button><strong>At Risk Reminder (Individual)</strong><pre>Hi [Name],
 
-    <div class="reminder-box">
-      <button class="copy-btn" onclick="copyReminder(this)">Copy</button>
-      <strong>At Risk Reminder (Individual)</strong>
-      <pre>Hi [Name],
-
-Just checking in on today’s targets. You’re currently At Risk on conversions/pipeline.
+Just checking in on today’s targets. You’re currently At Risk.
 
 Daily target left:
 • 1 more qualified prospect or
 • 1 follow-up that can convert
 
-You’ve done this before — let’s close the gap before end of day. Reply with your next action.
-
-You’ve got this! 💪</pre>
-    </div>
-
-    <div class="reminder-box">
-      <button class="copy-btn" onclick="copyReminder(this)">Copy</button>
-      <strong>End of Day Recap</strong>
-      <pre>End of Day Update 📊
-
-Daily Targets Status:
-• Leads: [X]/2.3
-• Prospects: [X]/1.1
-• Won: [X]
-• Follow-ups: [X]/4.5
-
-Team Leaderboard snapshot is live on the dashboard. Let’s review what’s working and adjust for tomorrow.
-
-Great effort today — keep pushing! 🔥</pre>
-    </div>
-
-    <div class="reminder-box">
-      <button class="copy-btn" onclick="copyReminder(this)">Copy</button>
-      <strong>Celebration (Ahead)</strong>
-      <pre>🔥 Well done [Name]!
-
-You’re Ahead of target this week. Excellent work on [specific achievement].
-
-Keep the momentum — your performance is lifting the whole team. Proud of you! 👏</pre>
-    </div>
-
-    <div class="note">
-      <strong>How to use:</strong> Click “Copy”, paste into WhatsApp, edit the placeholders, and send. Send the Morning Push every weekday at 8–9am. Send individual At Risk messages by 2pm if someone is behind.
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>📊 Performance by Brand / Company</h2>
-    <table>
-      <thead>
-        <tr><th>Brand</th><th>Leads</th><th>Prospects</th><th>Won</th><th>Conv. Rate</th><th>Pipeline</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>Posh Hotels & Suites</td><td>12</td><td>6</td><td>3</td><td>25%</td><td>₦1.8M</td></tr>
-        <tr><td>Hotel Per Hour</td><td>9</td><td>4</td><td>2</td><td>22%</td><td>₦720K</td></tr>
-        <tr><td>Streetfood NG</td><td>8</td><td>3</td><td>2</td><td>25%</td><td>₦280K</td></tr>
-        <tr><td>Inovacao Ltd</td><td>6</td><td>3</td><td>1</td><td>17%</td><td>₦850K</td></tr>
-        <tr><td>Gold Privilege</td><td>5</td><td>2</td><td>1</td><td>20%</td><td>₦450K</td></tr>
-        <tr><td>Amazonas / Creatif</td><td>2</td><td>0</td><td>0</td><td>0%</td><td>₦100K</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="section">
-    <h2>🔄 Pipeline Funnel</h2>
-    <table>
-      <thead>
-        <tr><th>Stage</th><th>Count</th><th>% of Total</th><th>Value</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>New Lead</td><td>15</td><td>36%</td><td>₦1.1M</td></tr>
-        <tr><td>Prospect</td><td>10</td><td>24%</td><td>₦980K</td></tr>
-        <tr><td>Qualified</td><td>8</td><td>19%</td><td>₦1.2M</td></tr>
-        <tr><td>Proposal</td><td>5</td><td>12%</td><td>₦920K</td></tr>
-        <tr><td>Won</td><td>9</td><td>—</td><td>₦3.73M</td></tr>
-        <tr><td>Lost</td><td>4</td><td>—</td><td>—</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="section">
-    <h2>📌 How to Use This Dashboard</h2>
-    <ul style="margin: 12px 0 0 20px; line-height: 1.8;">
-      <li><strong>Daily Targets:</strong> Review and update “Today’s Actual” every day.</li>
-      <li><strong>WhatsApp Reminders:</strong> Use the ready messages to push the team.</li>
-      <li><strong>Visibility = Pressure:</strong> Share this link in your team WhatsApp. Everyone sees who is ahead and who is at risk.</li>
-      <li><strong>Status Rules:</strong> ≥100% = Ahead • 80–99% = On Track • 60–79% = At Risk • <60% = Behind.</li>
-    </ul>
-  </div>
+You’ve got this! 💪</pre></div>
+<div class="note"><strong>How to use:</strong> Click Copy, paste into WhatsApp, and send.</div></div>
+<div class="section"><h2>📊 Performance by Brand / Company</h2><table><thead><tr><th>Brand</th><th>Leads</th><th>Prospects</th><th>Won</th><th>Conv. Rate</th><th>Pipeline</th></tr></thead><tbody>
+<tr><td>Posh Hotels & Suites</td><td>12</td><td>6</td><td>3</td><td>25%</td><td>₦1.8M</td></tr>
+<tr><td>Hotel Per Hour</td><td>9</td><td>4</td><td>2</td><td>22%</td><td>₦720K</td></tr>
+<tr><td>Streetfood NG</td><td>8</td><td>3</td><td>2</td><td>25%</td><td>₦280K</td></tr>
+<tr><td>Inovacao Ltd</td><td>6</td><td>3</td><td>1</td><td>17%</td><td>₦850K</td></tr>
+<tr><td>Gold Privilege</td><td>5</td><td>2</td><td>1</td><td>20%</td><td>₦450K</td></tr>
+<tr><td>Amazonas / Creatif</td><td>2</td><td>0</td><td>0</td><td>0%</td><td>₦100K</td></tr>
+</tbody></table></div>
+<div class="section"><h2>🔄 Pipeline Funnel</h2><table><thead><tr><th>Stage</th><th>Count</th><th>% of Total</th><th>Value</th></tr></thead><tbody>
+<tr><td>New Lead</td><td>15</td><td>36%</td><td>₦1.1M</td></tr>
+<tr><td>Prospect</td><td>10</td><td>24%</td><td>₦980K</td></tr>
+<tr><td>Qualified</td><td>8</td><td>19%</td><td>₦1.2M</td></tr>
+<tr><td>Proposal</td><td>5</td><td>12%</td><td>₦920K</td></tr>
+<tr><td>Won</td><td>9</td><td>—</td><td>₦3.73M</td></tr>
+<tr><td>Lost</td><td>4</td><td>—</td><td>—</td></tr>
+</tbody></table></div>
+<div class="section"><h2>📌 How to Use This Dashboard</h2><ul style="margin: 12px 0 0 20px; line-height: 1.8;"><li><strong>Daily Targets:</strong> Edit the numbers and click <strong>Update Daily Targets</strong> to refresh status. Values stay saved in your browser.</li><li><strong>WhatsApp Reminders:</strong> Use the ready messages to push the team.</li><li><strong>Visibility = Pressure:</strong> Share this link in your team WhatsApp.</li><li><strong>Status Rules:</strong> ≥100% = Ahead • 80–99% = On Track • 60–79% = At Risk • <60% = Behind.</li></ul></div>
 </div>
-
 <script>
-function copyReminder(btn) {
-  const pre = btn.parentElement.querySelector('pre');
-  const text = pre.innerText;
-  navigator.clipboard.writeText(text).then(() => {
-    const original = btn.innerText;
-    btn.innerText = 'Copied!';
-    setTimeout(() => btn.innerText = original, 1500);
-  });
-}
+function getStatus(actual, target) { if (target <= 0) return { text: '—', cls: '' }; const pct = (actual / target) * 100; if (pct >= 100) return { text: 'Ahead', cls: 'ahead' }; if (pct >= 80) return { text: 'On Track', cls: 'on-track' }; if (pct >= 60) return { text: 'At Risk', cls: 'at-risk' }; return { text: 'Behind', cls: 'behind' }; }
+function updateDailyTargets() { const keys = ['leads', 'prospects', 'won', 'followups', 'pipeline']; const data = {}; keys.forEach(key => { const input = document.getElementById('actual-' + key); const actual = parseFloat(input.value) || 0; const row = input.closest('tr'); const target = parseFloat(row.dataset.target); const status = getStatus(actual, target); const badge = document.getElementById('status-' + key); badge.textContent = status.text; badge.className = 'badge ' + status.cls; data[key] = actual; }); localStorage.setItem('hospitalita_daily_actuals', JSON.stringify(data)); const msg = document.getElementById('update-msg'); msg.style.display = 'inline'; setTimeout(() => msg.style.display = 'none', 2000); }
+function loadDailyTargets() { const saved = localStorage.getItem('hospitalita_daily_actuals'); if (!saved) return; try { const data = JSON.parse(saved); Object.keys(data).forEach(key => { const input = document.getElementById('actual-' + key); if (input) input.value = data[key]; }); updateDailyTargets(); } catch (e) {} }
+function copyReminder(btn) { const pre = btn.parentElement.querySelector('pre'); const text = pre.innerText; navigator.clipboard.writeText(text).then(() => { const original = btn.innerText; btn.innerText = 'Copied!'; setTimeout(() => btn.innerText = original, 1500); }); }
+document.addEventListener('DOMContentLoaded', loadDailyTargets);
 </script>
 </body>
 </html>
