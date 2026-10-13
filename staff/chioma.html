@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chioma A. | Personal CRM Dashboard</title>
+<style>
+:root { --primary: #1F4E79; --secondary: #2E75B6; --success: #27AE60; --warning: #F39C12; --danger: #E74C3C; --bg: #F4F6F9; --card: #FFFFFF; --text: #2C3E50; --muted: #7F8C8D; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; }
+.header { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 24px 32px; }
+.header h1 { font-size: 26px; font-weight: 700; }
+.container { max-width: 1000px; margin: 0 auto; padding: 24px; }
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 28px; }
+.kpi-card { background: var(--card); border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); position: relative; overflow: hidden; }
+.kpi-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--secondary); }
+.kpi-card.success::before { background: var(--success); }
+.kpi-label { font-size: 13px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+.kpi-value { font-size: 30px; font-weight: 700; margin: 6px 0; color: var(--primary); }
+.kpi-sub { font-size: 12px; color: var(--muted); }
+.progress-bar { height: 8px; background: #E8EEF4; border-radius: 4px; margin-top: 10px; overflow: hidden; }
+.progress-fill { height: 100%; border-radius: 4px; }
+.section { background: var(--card); border-radius: 12px; padding: 24px; margin-bottom: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.section h2 { font-size: 18px; color: var(--primary); margin-bottom: 16px; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th { text-align: left; padding: 12px 10px; background: #F8FAFC; color: var(--primary); font-weight: 600; border-bottom: 2px solid #E8EEF4; }
+td { padding: 12px 10px; border-bottom: 1px solid #F0F3F7; }
+.badge { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+.badge.on-track { background: #E8F8EF; color: var(--success); }
+.badge.at-risk { background: #FEF5E7; color: var(--warning); }
+.badge.behind { background: #FDEDEC; color: var(--danger); }
+.badge.ahead { background: #EBF5FB; color: var(--secondary); }
+.note { font-size: 13px; color: var(--muted); margin-top: 12px; padding: 12px; background: #F8FAFC; border-radius: 8px; }
+.reminder-box { background: #F8FBFF; border: 1px solid #D6E6F5; border-radius: 8px; padding: 16px; margin: 12px 0; }
+.reminder-box pre { white-space: pre-wrap; font-family: inherit; font-size: 13.5px; margin: 8px 0; }
+.copy-btn, .update-btn { background: var(--secondary); color: white; border: none; padding: 8px 16px; border-radius: 6px; font-size: 13px; cursor: pointer; }
+.actual-input { width: 90px; padding: 4px 8px; border: 1px solid #D6E6F5; border-radius: 4px; font-size: 14px; text-align: right; }
+.update-row { margin-top: 16px; display: flex; gap: 12px; align-items: center; }
+</style>
+</head>
+<body>
+<div class="header"><h1>Chioma A. — Personal CRM Dashboard</h1><p>Hospitalita & Inovacao • Your Performance • October 2026</p></div>
+<div class="container">
+<div class="kpi-grid">
+<div class="kpi-card success"><div class="kpi-label">Your Leads</div><div class="kpi-value">14</div><div class="kpi-sub">Target: 15 • 93%</div><div class="progress-bar"><div class="progress-fill" style="width:93%;background:var(--success);"></div></div></div>
+<div class="kpi-card success"><div class="kpi-label">Your Prospects</div><div class="kpi-value">7</div><div class="kpi-sub">Target: 7 • 100%</div><div class="progress-bar"><div class="progress-fill" style="width:100%;background:var(--success);"></div></div></div>
+<div class="kpi-card success"><div class="kpi-label">Your Won</div><div class="kpi-value">4</div><div class="kpi-sub">Target: 3 • 133%</div><div class="progress-bar"><div class="progress-fill" style="width:100%;background:var(--success);"></div></div></div>
+<div class="kpi-card success"><div class="kpi-label">Value Closed</div><div class="kpi-value">₦1.85M</div><div class="kpi-sub">Target: ₦1.5M • Ahead</div><div class="progress-bar"><div class="progress-fill" style="width:100%;background:var(--success);"></div></div></div>
+</div>
+<div class="section"><h2>📅 Your Daily Targets</h2>
+<table>
+<thead><tr><th>Metric</th><th>Monthly Target</th><th>Daily Target</th><th>Today's Actual</th><th>Status</th></tr></thead>
+<tbody>
+<tr data-key="leads" data-target="0.7"><td>New Leads</td><td>15</td><td>0.7</td><td><input type="number" step="0.1" class="actual-input" id="actual-leads" value="1"></td><td><span class="badge ahead" id="status-leads">Ahead</span></td></tr>
+<tr data-key="prospects" data-target="0.3"><td>Qualified Prospects</td><td>7</td><td>0.3</td><td><input type="number" step="0.1" class="actual-input" id="actual-prospects" value="0"></td><td><span class="badge at-risk" id="status-prospects">At Risk</span></td></tr>
+<tr data-key="won" data-target="0.14"><td>Conversions (Won)</td><td>3</td><td>0.14</td><td><input type="number" step="0.1" class="actual-input" id="actual-won" value="0"></td><td><span class="badge behind" id="status-won">Behind</span></td></tr>
+<tr data-key="followups" data-target="1.5"><td>Follow-ups</td><td>33</td><td>1.5</td><td><input type="number" step="0.1" class="actual-input" id="actual-followups" value="2"></td><td><span class="badge ahead" id="status-followups">Ahead</span></td></tr>
+<tr data-key="pipeline" data-target="68000"><td>Pipeline Added (₦)</td><td>1,500,000</td><td>68,000</td><td><input type="number" step="1000" class="actual-input" id="actual-pipeline" value="80000"></td><td><span class="badge ahead" id="status-pipeline">Ahead</span></td></tr>
+</tbody></table>
+<div class="update-row"><button class="update-btn" onclick="updateDailyTargets()">Update My Targets</button><span id="update-msg" style="font-size:13px; color:var(--success); display:none;">✓ Updated</span></div>
+<div class="note">Your personal numbers only. Status: ≥100% Ahead • 80–99% On Track • 60–79% At Risk • <60% Behind.</div></div>
+<div class="section"><h2>💬 Your Personal Reminders</h2>
+<div class="reminder-box"><button class="copy-btn" onclick="copyReminder(this)">Copy</button><strong>Self-Motivation</strong><pre>Chioma, you’re currently Ahead on leads and closed value.
+
+Keep the momentum today:
+• 1 new lead or
+• 1 strong follow-up
+
+You’re setting the pace for the team. Finish strong! 🔥</pre></div>
+<div class="note">Share only your personal link. Your numbers stay private to you.</div></div>
+</div>
+<script>
+function getStatus(actual, target) { if (target <= 0) return { text: '—', cls: '' }; const pct = (actual / target) * 100; if (pct >= 100) return { text: 'Ahead', cls: 'ahead' }; if (pct >= 80) return { text: 'On Track', cls: 'on-track' }; if (pct >= 60) return { text: 'At Risk', cls: 'at-risk' }; return { text: 'Behind', cls: 'behind' }; }
+function updateDailyTargets() { const keys = ['leads', 'prospects', 'won', 'followups', 'pipeline']; const data = {}; keys.forEach(key => { const input = document.getElementById('actual-' + key); const actual = parseFloat(input.value) || 0; const row = input.closest('tr'); const target = parseFloat(row.dataset.target); const status = getStatus(actual, target); const badge = document.getElementById('status-' + key); badge.textContent = status.text; badge.className = 'badge ' + status.cls; data[key] = actual; }); localStorage.setItem('chioma_daily', JSON.stringify(data)); document.getElementById('update-msg').style.display = 'inline'; setTimeout(() => document.getElementById('update-msg').style.display = 'none', 2000); }
+function loadDailyTargets() { const saved = localStorage.getItem('chioma_daily'); if (!saved) return; try { const data = JSON.parse(saved); Object.keys(data).forEach(key => { const input = document.getElementById('actual-' + key); if (input) input.value = data[key]; }); updateDailyTargets(); } catch (e) {} }
+function copyReminder(btn) { const pre = btn.parentElement.querySelector('pre'); navigator.clipboard.writeText(pre.innerText).then(() => { const original = btn.innerText; btn.innerText = 'Copied!'; setTimeout(() => btn.innerText = original, 1500); }); }
+document.addEventListener('DOMContentLoaded', loadDailyTargets);
+</script>
+</body>
+</html>
