@@ -196,13 +196,13 @@ body {
   <div class="brand-grid">
     <div class="brand-card" onclick="openBrand('hotel-per-hour', 'Hotel Per Hour')">
       <h3>Hotel Per Hour</h3>
-      <p id="codeHint">Staff codes</p>
+      <p>Enter your staff code</p>
     </div>
     <div class="brand-card disabled"><h3>Posh Hotels</h3><p>Coming soon</p></div>
     <div class="brand-card disabled"><h3>Streetfood NG</h3><p>Coming soon</p></div>
     <div class="brand-card disabled"><h3>Gold Privilege</h3><p>Coming soon</p></div>
   </div>
-  <div class="note" id="codesDisplay">Hotel Per Hour codes: <strong>—</strong></div>
+  <div class="note">Select your brand and enter the code provided by management.</div>
   <div class="admin-link"><a onclick="openAdmin()">Set / Change Login Codes</a></div>
 </div>
 
@@ -242,8 +242,6 @@ function loadCodes() {
   const saved = localStorage.getItem('hph_staff_codes');
   validCodes = saved ? JSON.parse(saved) : DEFAULT_CODES;
   if (!Array.isArray(validCodes) || validCodes.length === 0) validCodes = DEFAULT_CODES;
-  document.getElementById('codesDisplay').innerHTML = 'Hotel Per Hour codes: <strong>' + validCodes.join(' • ') + '</strong>';
-  document.getElementById('codeHint').textContent = validCodes.join(' / ');
 }
 
 function openBrand(brand, name) {
@@ -301,7 +299,6 @@ function saveCodes() {
   if (codes.length === 0) { alert('Enter at least one code'); return; }
   validCodes = codes;
   localStorage.setItem('hph_staff_codes', JSON.stringify(codes));
-  loadCodes();
   document.getElementById('adminSuccess').style.display = 'block';
   setTimeout(() => {
     document.getElementById('adminModal').classList.remove('active');
