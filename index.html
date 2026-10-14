@@ -21,6 +21,14 @@ body {
   color: var(--text);
   min-height: 100vh;
 }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.96) translateY(8px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
 .header {
   background: linear-gradient(135deg, var(--primary) 0%, #1A4A7A 100%);
   color: white;
@@ -28,6 +36,7 @@ body {
   text-align: center;
   position: relative;
   overflow: hidden;
+  animation: fadeUp 0.5s ease;
 }
 .header::after {
   content: '';
@@ -36,16 +45,8 @@ body {
   background: var(--bg);
   border-radius: 50% 50% 0 0;
 }
-.header h1 {
-  font-size: 32px;
-  font-weight: 600;
-  letter-spacing: -0.5px;
-}
-.header p {
-  opacity: 0.85;
-  margin-top: 6px;
-  font-size: 15px;
-}
+.header h1 { font-size: 32px; font-weight: 600; letter-spacing: -0.5px; }
+.header p { opacity: 0.85; margin-top: 6px; font-size: 15px; }
 .container {
   max-width: 920px;
   margin: -20px auto 40px;
@@ -66,36 +67,35 @@ body {
   text-align: center;
   box-shadow: 0 6px 20px rgba(15,44,76,0.08);
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
   border: 1px solid rgba(255,255,255,0.8);
   position: relative;
   overflow: hidden;
+  animation: fadeUp 0.5s ease backwards;
 }
+.brand-card:nth-child(1) { animation-delay: 0.05s; }
+.brand-card:nth-child(2) { animation-delay: 0.1s; }
+.brand-card:nth-child(3) { animation-delay: 0.15s; }
+.brand-card:nth-child(4) { animation-delay: 0.2s; }
 .brand-card::before {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0; height: 4px;
   background: linear-gradient(90deg, var(--accent), var(--gold));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
 }
+.brand-card:hover::before { transform: scaleX(1); }
 .brand-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 28px rgba(15,44,76,0.12);
+  transform: translateY(-5px);
+  box-shadow: 0 14px 30px rgba(15,44,76,0.12);
 }
-.brand-card h3 {
-  font-size: 18px;
-  color: var(--primary);
-  margin-bottom: 6px;
-  font-weight: 600;
-}
-.brand-card p {
-  font-size: 13px;
-  color: var(--muted);
-}
-.brand-card.disabled {
-  opacity: 0.55;
-  cursor: default;
-}
+.brand-card h3 { font-size: 18px; color: var(--primary); margin-bottom: 6px; font-weight: 600; }
+.brand-card p { font-size: 13px; color: var(--muted); }
+.brand-card.disabled { opacity: 0.55; cursor: default; }
 .brand-card.disabled:hover { transform: none; box-shadow: 0 6px 20px rgba(15,44,76,0.08); }
+.brand-card.disabled::before { display: none; }
 .note {
   text-align: center;
   margin-top: 28px;
@@ -105,11 +105,9 @@ body {
   padding: 14px 18px;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  animation: fadeUp 0.6s ease 0.25s backwards;
 }
-.admin-link {
-  text-align: center;
-  margin-top: 16px;
-}
+.admin-link { text-align: center; margin-top: 16px; }
 .admin-link a {
   color: var(--accent);
   font-size: 13px;
@@ -117,9 +115,9 @@ body {
   text-decoration: none;
   padding: 6px 12px;
   border-radius: 20px;
-  transition: background 0.2s;
+  transition: background 0.2s, transform 0.2s;
 }
-.admin-link a:hover { background: rgba(26,107,181,0.08); }
+.admin-link a:hover { background: rgba(26,107,181,0.08); transform: translateY(-1px); }
 .modal {
   display: none;
   position: fixed;
@@ -139,12 +137,9 @@ body {
   max-width: 400px;
   text-align: center;
   box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  animation: modalIn 0.25s ease;
 }
-.modal-box h3 {
-  color: var(--primary);
-  font-size: 20px;
-  margin-bottom: 8px;
-}
+.modal-box h3 { color: var(--primary); font-size: 20px; margin-bottom: 8px; }
 .modal-box p { font-size: 13px; color: var(--muted); margin-bottom: 12px; }
 .modal-box input {
   width: 100%;
@@ -155,9 +150,9 @@ body {
   margin: 8px 0;
   text-align: center;
   outline: none;
-  transition: border 0.2s;
+  transition: border 0.2s, box-shadow 0.2s;
 }
-.modal-box input:focus { border-color: var(--accent); }
+.modal-box input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(26,107,181,0.12); }
 .modal-box button {
   background: linear-gradient(135deg, var(--accent), #155A9C);
   color: white;
@@ -169,9 +164,10 @@ body {
   font-size: 15px;
   font-weight: 600;
   margin-top: 8px;
-  transition: opacity 0.2s;
+  transition: transform 0.15s, opacity 0.2s;
 }
-.modal-box button:hover { opacity: 0.92; }
+.modal-box button:hover { opacity: 0.95; }
+.modal-box button:active { transform: scale(0.98); }
 .error { color: #E74C3C; font-size: 13px; display: none; margin-top: 10px; }
 .success { color: #27AE60; font-size: 13px; display: none; margin-top: 10px; }
 .code-list input { margin: 6px 0; }
