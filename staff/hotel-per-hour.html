@@ -253,11 +253,7 @@ textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(26,107,
 
   <div class="toolbar">
     <label>Staff</label>
-    <select id="staffSelect" onchange="changeStaff()">
-      <option value="HPH1">Staff 1 (HPH1)</option>
-      <option value="HPH2">Staff 2 (HPH2)</option>
-      <option value="HPH3">Staff 3 (HPH3)</option>
-    </select>
+    <span id="staffLabel" style="font-weight:600; color:var(--primary); padding:6px 10px; background:#F1F5F9; border-radius:6px;">—</span>
     <label>Date</label>
     <input type="date" id="reportDate">
     <button class="btn" onclick="loadAll()">Load</button>
@@ -422,11 +418,7 @@ function setBadge(id, actual, target) {
   if (el) { el.textContent = s.text; el.className = 'badge ' + s.cls; }
 }
 
-function changeStaff() {
-  STAFF_CODE = document.getElementById('staffSelect').value;
-  localStorage.setItem('hph_selected_staff', STAFF_CODE);
-  loadAll();
-}
+function changeStaff() { /* locked */ }
 
 function loadAll() {
   const date = document.getElementById('reportDate').value || todayISO();
@@ -579,10 +571,9 @@ function saveNotes() {
 
 document.addEventListener('DOMContentLoaded', () => {
   const saved = localStorage.getItem('hph_selected_staff');
-  if (saved) {
-    STAFF_CODE = saved;
-    document.getElementById('staffSelect').value = saved;
-  }
+  if (saved) STAFF_CODE = saved;
+  const label = document.getElementById('staffLabel');
+  if (label) label.textContent = STAFF_CODE || 'Staff';
   document.getElementById('reportDate').value = todayISO();
   loadAll();
 });
