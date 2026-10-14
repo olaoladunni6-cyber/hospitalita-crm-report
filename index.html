@@ -26,24 +26,20 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color:
 </style>
 </head>
 <body>
-<div class="header"><h1>Hospitalita & Inovacao CRM</h1><p>Select brand • Enter staff code • Update daily</p></div>
+<div class="header"><h1>Hospitalita & Inovacao CRM</h1><p>Select brand • Enter code • Update daily</p></div>
 <div class="container">
   <div class="brand-grid">
-    <div class="brand-card" onclick="openBrand('hotel-per-hour', 'Hotel Per Hour')"><h3>Hotel Per Hour</h3><p>Staff codes active</p></div>
+    <div class="brand-card" onclick="openBrand('hotel-per-hour', 'Hotel Per Hour')"><h3>Hotel Per Hour</h3><p>Code: HPH1 / HPH2 / HPH3</p></div>
     <div class="brand-card" style="opacity:0.6;cursor:default;"><h3>Posh Hotels</h3><p>Coming soon</p></div>
     <div class="brand-card" style="opacity:0.6;cursor:default;"><h3>Streetfood NG</h3><p>Coming soon</p></div>
     <div class="brand-card" style="opacity:0.6;cursor:default;"><h3>Gold Privilege</h3><p>Coming soon</p></div>
   </div>
-  <div class="note">Hotel Per Hour staff codes: <strong>HPH1</strong> • <strong>HPH2</strong> • <strong>HPH3</strong></div>
+  <div class="note">Hotel Per Hour codes: <strong>HPH1</strong> • <strong>HPH2</strong> • <strong>HPH3</strong></div>
 </div>
-<div class="modal" id="codeModal"><div class="modal-box"><h3 id="modalTitle">Enter Staff Code</h3><input type="password" id="codeInput" placeholder="Staff Code"><button onclick="checkCode()">Open Dashboard</button><div class="error" id="errorMsg">Incorrect code</div></div></div>
+<div class="modal" id="codeModal"><div class="modal-box"><h3 id="modalTitle">Enter Code</h3><input type="password" id="codeInput" placeholder="Code"><button onclick="checkCode()">Open Dashboard</button><div class="error" id="errorMsg">Incorrect code</div></div></div>
 <script>
-const STAFF_CODES = {
-  'HPH1': { staff: 'staff1', name: 'Staff 1' },
-  'HPH2': { staff: 'staff2', name: 'Staff 2' },
-  'HPH3': { staff: 'staff3', name: 'Staff 3' }
-};
-const DASHBOARD_BASE = 'https://htmlpreview.github.io/?https://github.com/olaoladunni6-cyber/hospitalita-crm-report/blob/main/staff/hotel-per-hour.html';
+const VALID_CODES = ['HPH1', 'HPH2', 'HPH3'];
+const DASHBOARD_URL = 'https://htmlpreview.github.io/?https://github.com/olaoladunni6-cyber/hospitalita-crm-report/blob/main/staff/hotel-per-hour.html';
 let currentBrand = '';
 function openBrand(brand, name) {
   currentBrand = brand;
@@ -55,10 +51,9 @@ function openBrand(brand, name) {
 }
 function checkCode() {
   const entered = document.getElementById('codeInput').value.trim().toUpperCase();
-  const match = STAFF_CODES[entered];
-  if (match && currentBrand === 'hotel-per-hour') {
-    const url = DASHBOARD_BASE + '?staff=' + match.staff + '&name=' + encodeURIComponent(match.name);
-    window.location.href = url;
+  if (VALID_CODES.includes(entered) && currentBrand === 'hotel-per-hour') {
+    localStorage.setItem('hph_selected_staff', entered);
+    window.location.href = DASHBOARD_URL;
   } else {
     document.getElementById('errorMsg').style.display = 'block';
   }
