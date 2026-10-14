@@ -28,13 +28,13 @@ td { padding: 10px 8px; border-bottom: 1px solid #F0F3F7; }
 .back { display: inline-block; margin-bottom: 16px; color: var(--secondary); text-decoration: none; font-size: 14px; }
 .date-bar, .staff-bar { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
 .date-bar input[type="date"], .staff-bar select { padding: 8px 12px; border: 1px solid #D6E6F5; border-radius: 6px; font-size: 14px; }
-.staff-name { background: #EBF5FB; color: var(--secondary); padding: 4px 12px; border-radius: 20px; font-size: 13px; font-weight: 600; }
 .hotel-table { overflow-x: auto; }
 .delete-btn { background: var(--danger); color: white; border: none; padding: 4px 8px; border-radius: 4px; font-size: 12px; cursor: pointer; }
+.kpi-note { font-size: 12px; color: var(--muted); font-style: italic; }
 </style>
 </head>
 <body>
-<div class="header"><h1>Hotel Per Hour — Staff CRM</h1><p>Select staff • Date-based tracking</p></div>
+<div class="header"><h1>Hotel Per Hour — October Targets</h1><p>Staff CRM • 6 Priority Zones • Guest-Ready Inventory</p></div>
 <div class="container">
   <a class="back" href="https://htmlpreview.github.io/?https://github.com/olaoladunni6-cyber/hospitalita-crm-report/blob/main/index.html">← Back to Main CRM</a>
   <div class="staff-bar">
@@ -46,20 +46,20 @@ td { padding: 10px 8px; border-bottom: 1px solid #F0F3F7; }
     </select>
   </div>
   <div class="section">
-    <h2>📅 Daily Targets</h2>
+    <h2>📅 October Targets</h2>
     <div class="date-bar"><label>Date:</label><input type="date" id="reportDate"><button class="update-btn" onclick="loadDateData()">Load Date</button></div>
     <table>
-      <thead><tr><th>Metric</th><th>Monthly Target</th><th>Daily Target</th><th>Actual</th><th>Status</th></tr></thead>
+      <thead><tr><th>Metric</th><th>October Target</th><th>Daily Target</th><th>Actual</th><th>Status</th><th>Note</th></tr></thead>
       <tbody>
-        <tr><td>Hotels Contacted</td><td><input type="number" class="target-input" id="monthly-contacted" value="40"></td><td><input type="number" step="0.1" class="target-input" id="daily-contacted" value="1.8"></td><td><input type="number" step="0.1" class="actual-input" id="actual-contacted" value="0"></td><td><span class="badge" id="status-contacted">—</span></td></tr>
-        <tr><td>Demos Booked</td><td><input type="number" class="target-input" id="monthly-demos" value="15"></td><td><input type="number" step="0.1" class="target-input" id="daily-demos" value="0.7"></td><td><input type="number" step="0.1" class="actual-input" id="actual-demos" value="0"></td><td><span class="badge" id="status-demos">—</span></td></tr>
-        <tr><td>Hotels Signed Up</td><td><input type="number" class="target-input" id="monthly-signups" value="6"></td><td><input type="number" step="0.1" class="target-input" id="daily-signups" value="0.27"></td><td><input type="number" step="0.1" class="actual-input" id="actual-signups" value="0"></td><td><span class="badge" id="status-signups">—</span></td></tr>
-        <tr><td>Follow-ups Done</td><td><input type="number" class="target-input" id="monthly-followups" value="44"></td><td><input type="number" step="0.1" class="target-input" id="daily-followups" value="2.0"></td><td><input type="number" step="0.1" class="actual-input" id="actual-followups" value="0"></td><td><span class="badge" id="status-followups">—</span></td></tr>
-        <tr><td>Hot Prospects</td><td><input type="number" class="target-input" id="monthly-pipeline" value="8"></td><td><input type="number" step="0.1" class="target-input" id="daily-pipeline" value="0.36"></td><td><input type="number" step="0.1" class="actual-input" id="actual-pipeline" value="0"></td><td><span class="badge" id="status-pipeline">—</span></td></tr>
+        <tr><td>New hotels signed (6 priority zones)</td><td><input type="number" class="target-input" id="monthly-signed" value="28"></td><td><input type="number" step="0.1" class="target-input" id="daily-signed" value="1.3"></td><td><input type="number" step="0.1" class="actual-input" id="actual-signed" value="21"></td><td><span class="badge" id="status-signed">—</span></td><td class="kpi-note">Closes Island + Mainland gap</td></tr>
+        <tr><td>New hotels LIVE & Guest-Ready</td><td><input type="number" class="target-input" id="monthly-live" value="16"></td><td><input type="number" step="0.1" class="target-input" id="daily-live" value="0.7"></td><td><input type="number" step="0.1" class="actual-input" id="actual-live" value="0"></td><td><span class="badge" id="status-live">—</span></td><td class="kpi-note">Signed but not live = no full credit</td></tr>
+        <tr><td>Existing hotels physically revisited</td><td><input type="number" class="target-input" id="monthly-revisited" value="80"></td><td><input type="number" step="0.1" class="target-input" id="daily-revisited" value="3.6"></td><td><input type="number" step="0.1" class="actual-input" id="actual-revisited" value="60"></td><td><span class="badge" id="status-revisited">—</span></td><td class="kpi-note">Guests must not arrive to a dead listing</td></tr>
+        <tr><td>Existing hotels certified Guest-Ready</td><td><input type="number" class="target-input" id="monthly-certified" value="64"></td><td><input type="number" step="0.1" class="target-input" id="daily-certified" value="2.9"></td><td><input type="number" step="0.1" class="actual-input" id="actual-certified" value="48"></td><td><span class="badge" id="status-certified">—</span></td><td class="kpi-note">80% conversion of revisited hotels</td></tr>
+        <tr><td>Net live Guest-Ready inventory (31 Oct)</td><td><input type="number" class="target-input" id="monthly-inventory" value="80"></td><td><input type="number" step="0.1" class="target-input" id="daily-inventory" value="0"></td><td><input type="number" step="0.1" class="actual-input" id="actual-inventory" value="64"></td><td><span class="badge" id="status-inventory">—</span></td><td class="kpi-note">64+ ready + 16 new live = 80+ ready</td></tr>
       </tbody>
     </table>
     <div class="update-row"><button class="update-btn" onclick="saveDateData()">Save for This Date</button><span id="update-msg" style="font-size:13px; color:var(--success); display:none;">✓ Saved</span></div>
-    <div class="note">Data is saved separately for each staff member and each date.</div>
+    <div class="note">October focus: Quality Guest-Ready inventory, not vanity counts. Data saved per staff and per date.</div>
   </div>
   <div class="section">
     <h2>🏨 Hotel Prospect Tracker</h2>
@@ -68,16 +68,16 @@ td { padding: 10px 8px; border-bottom: 1px solid #F0F3F7; }
   </div>
 </div>
 <script>
-const KEYS = ['contacted', 'demos', 'signups', 'followups', 'pipeline'];
-const STATUS_OPTIONS = ['Contacted', 'Demo Booked', 'Signed Up', 'Follow-up', 'Lost'];
+const KEYS = ['signed', 'live', 'revisited', 'certified', 'inventory'];
+const STATUS_OPTIONS = ['Contacted', 'Demo Booked', 'Signed Up', 'Live', 'Guest-Ready', 'Follow-up', 'Lost'];
 let STAFF_CODE = 'HPH1';
 function todayISO() { return new Date().toISOString().slice(0, 10); }
 function storageKey(type, date) { return 'hph_' + STAFF_CODE + '_' + type + '_' + (date || 'default'); }
 function getStatus(actual, target) { if (target <= 0) return { text: '—', cls: '' }; const pct = (actual / target) * 100; if (pct >= 100) return { text: 'Ahead', cls: 'ahead' }; if (pct >= 80) return { text: 'On Track', cls: 'on-track' }; if (pct >= 60) return { text: 'At Risk', cls: 'at-risk' }; return { text: 'Behind', cls: 'behind' }; }
 function changeStaff() { STAFF_CODE = document.getElementById('staffSelect').value; localStorage.setItem('hph_selected_staff', STAFF_CODE); loadDateData(); loadHotels(); }
 function saveDateData() { const date = document.getElementById('reportDate').value || todayISO(); const data = {}; KEYS.forEach(key => { data[key] = { monthly: parseFloat(document.getElementById('monthly-' + key).value) || 0, daily: parseFloat(document.getElementById('daily-' + key).value) || 0, actual: parseFloat(document.getElementById('actual-' + key).value) || 0 }; const status = getStatus(data[key].actual, data[key].daily); const badge = document.getElementById('status-' + key); badge.textContent = status.text; badge.className = 'badge ' + status.cls; }); localStorage.setItem(storageKey('targets', date), JSON.stringify(data)); document.getElementById('update-msg').style.display = 'inline'; setTimeout(() => document.getElementById('update-msg').style.display = 'none', 2000); }
-function loadDateData() { const date = document.getElementById('reportDate').value || todayISO(); const saved = localStorage.getItem(storageKey('targets', date)); if (!saved) { KEYS.forEach(key => { document.getElementById('actual-' + key).value = 0; document.getElementById('status-' + key).textContent = '—'; document.getElementById('status-' + key).className = 'badge'; }); return; } try { const data = JSON.parse(saved); KEYS.forEach(key => { if (data[key]) { document.getElementById('monthly-' + key).value = data[key].monthly; document.getElementById('daily-' + key).value = data[key].daily; document.getElementById('actual-' + key).value = data[key].actual; const status = getStatus(data[key].actual, data[key].daily); const badge = document.getElementById('status-' + key); badge.textContent = status.text; badge.className = 'badge ' + status.cls; } }); } catch (e) {} }
-function addHotelRow(data = {}) { const tbody = document.getElementById('hotelBody'); const tr = document.createElement('tr'); tr.innerHTML = `<td><input class="hotel-input" placeholder="Hotel Name" value="${data.name || ''}"></td><td><input class="hotel-input" placeholder="Address" value="${data.address || ''}"></td><td><input class="hotel-input" placeholder="Phone" value="${data.phone || ''}"></td><td><input class="hotel-input" placeholder="Contact" value="${data.contact || ''}"></td><td><input class="hotel-input" type="number" placeholder="Rooms" value="${data.rooms || ''}" style="width:70px;"></td><td><select class="hotel-input" style="width:120px;">${STATUS_OPTIONS.map(s => `<option ${data.status===s?'selected':''}>${s}</option>`).join('')}</select></td><td><button class="delete-btn" onclick="this.closest('tr').remove()">✕</button></td>`; tbody.appendChild(tr); }
+function loadDateData() { const date = document.getElementById('reportDate').value || todayISO(); const saved = localStorage.getItem(storageKey('targets', date)); if (!saved) { KEYS.forEach(key => { document.getElementById('status-' + key).textContent = '—'; document.getElementById('status-' + key).className = 'badge'; }); return; } try { const data = JSON.parse(saved); KEYS.forEach(key => { if (data[key]) { document.getElementById('monthly-' + key).value = data[key].monthly; document.getElementById('daily-' + key).value = data[key].daily; document.getElementById('actual-' + key).value = data[key].actual; const status = getStatus(data[key].actual, data[key].daily); const badge = document.getElementById('status-' + key); badge.textContent = status.text; badge.className = 'badge ' + status.cls; } }); } catch (e) {} }
+function addHotelRow(data = {}) { const tbody = document.getElementById('hotelBody'); const tr = document.createElement('tr'); tr.innerHTML = `<td><input class="hotel-input" placeholder="Hotel Name" value="${data.name || ''}"></td><td><input class="hotel-input" placeholder="Address" value="${data.address || ''}"></td><td><input class="hotel-input" placeholder="Phone" value="${data.phone || ''}"></td><td><input class="hotel-input" placeholder="Contact" value="${data.contact || ''}"></td><td><input class="hotel-input" type="number" placeholder="Rooms" value="${data.rooms || ''}" style="width:70px;"></td><td><select class="hotel-input" style="width:130px;">${STATUS_OPTIONS.map(s => `<option ${data.status===s?'selected':''}>${s}</option>`).join('')}</select></td><td><button class="delete-btn" onclick="this.closest('tr').remove()">✕</button></td>`; tbody.appendChild(tr); }
 function saveHotels() { const rows = document.querySelectorAll('#hotelBody tr'); const hotels = []; rows.forEach(row => { const inputs = row.querySelectorAll('input, select'); hotels.push({ name: inputs[0].value, address: inputs[1].value, phone: inputs[2].value, contact: inputs[3].value, rooms: inputs[4].value, status: inputs[5].value }); }); localStorage.setItem(storageKey('hotels'), JSON.stringify(hotels)); document.getElementById('hotel-msg').style.display = 'inline'; setTimeout(() => document.getElementById('hotel-msg').style.display = 'none', 2000); }
 function loadHotels() { const saved = localStorage.getItem(storageKey('hotels')); document.getElementById('hotelBody').innerHTML = ''; if (!saved) { addHotelRow(); return; } try { const hotels = JSON.parse(saved); hotels.forEach(h => addHotelRow(h)); } catch (e) { addHotelRow(); } }
 document.addEventListener('DOMContentLoaded', () => { const savedStaff = localStorage.getItem('hph_selected_staff'); if (savedStaff) { STAFF_CODE = savedStaff; document.getElementById('staffSelect').value = savedStaff; } document.getElementById('reportDate').value = todayISO(); loadDateData(); loadHotels(); });
