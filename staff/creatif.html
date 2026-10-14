@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Creatif Events | Hospitalita CRM — October 2026</title>
+<style>
+:root {
+  --primary: #0F2C4C;
+  --accent: #1A6BB5;
+  --gold: #C9A227;
+  --success: #1E9A5B;
+  --warning: #E67E22;
+  --danger: #E74C3C;
+  --bg: #F5F7FB;
+  --card: #FFFFFF;
+  --text: #1E2A3A;
+  --muted: #6B7C93;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes scorePop { 0% { transform: scale(0.9); opacity: 0.6; } 100% { transform: scale(1); opacity: 1; } }
+.header { background: linear-gradient(135deg, var(--primary) 0%, #1A4A7A 60%, #0D3A66 100%); color: white; padding: 26px 28px 22px; animation: fadeUp 0.4s ease; }
+.header h1 { font-size: 26px; font-weight: 600; letter-spacing: -0.3px; }
+.header p { opacity: 0.85; font-size: 14px; margin-top: 4px; }
+.container { max-width: 1180px; margin: 0 auto; padding: 20px 18px 40px; }
+.back { display: inline-flex; align-items: center; gap: 6px; margin-bottom: 16px; color: var(--accent); text-decoration: none; font-size: 13.5px; font-weight: 500; transition: transform 0.2s; }
+.back:hover { text-decoration: underline; transform: translateX(-2px); }
+.toolbar { background: white; border-radius: 14px; padding: 14px 16px; margin-bottom: 18px; box-shadow: 0 2px 10px rgba(15,44,76,0.06); display: flex; align-items: center; gap: 14px; flex-wrap: wrap; animation: fadeUp 0.45s ease 0.05s backwards; }
+.toolbar label { font-size: 13px; font-weight: 600; color: var(--primary); }
+.toolbar input[type="date"] { padding: 8px 12px; border: 1.5px solid #E2E8F0; border-radius: 8px; font-size: 13.5px; outline: none; }
+.toolbar input:focus { border-color: var(--accent); }
+.btn { background: linear-gradient(135deg, var(--accent), #155A9C); color: white; border: none; padding: 9px 16px; border-radius: 8px; font-size: 13.5px; font-weight: 600; cursor: pointer; transition: transform 0.15s, opacity 0.2s; }
+.btn:hover { opacity: 0.95; }
+.btn:active { transform: scale(0.97); }
+.btn-ghost { background: #F1F5F9; color: var(--primary); }
+.section { background: var(--card); border-radius: 14px; padding: 20px 18px; margin-bottom: 18px; box-shadow: 0 2px 12px rgba(15,44,76,0.06); border: 1px solid rgba(226,232,240,0.6); animation: fadeUp 0.45s ease backwards; }
+.section h2 { font-size: 16.5px; color: var(--primary); margin-bottom: 14px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+.section h2::before { content: ''; width: 4px; height: 18px; background: linear-gradient(180deg, var(--accent), var(--gold)); border-radius: 2px; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { text-align: left; padding: 10px 8px; background: #F8FAFC; color: var(--primary); font-weight: 600; border-bottom: 2px solid #E8EEF4; }
+td { padding: 9px 8px; border-bottom: 1px solid #F1F5F9; vertical-align: middle; }
+.badge { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 11.5px; font-weight: 600; min-width: 68px; text-align: center; }
+.badge.on-track { background: #E8F8EF; color: var(--success); }
+.badge.at-risk { background: #FEF5E7; color: var(--warning); }
+.badge.behind { background: #FDEDEC; color: var(--danger); }
+.badge.ahead { background: #EBF5FB; color: var(--accent); }
+.note { font-size: 12.5px; color: var(--muted); margin-top: 14px; padding: 12px 14px; background: #F8FAFC; border-radius: 10px; border-left: 3px solid var(--accent); }
+.input { width: 100%; max-width: 78px; padding: 6px 8px; border: 1.5px solid #E2E8F0; border-radius: 6px; font-size: 13px; text-align: right; outline: none; }
+.input:focus { border-color: var(--accent); }
+.input-wide { max-width: 140px; }
+.score-box { background: linear-gradient(135deg, #EBF5FB 0%, #F0F7FF 100%); border-radius: 12px; padding: 18px; margin-top: 8px; text-align: center; }
+.score-box strong { font-size: 32px; color: var(--primary); font-weight: 700; display: inline-block; animation: scorePop 0.35s ease; }
+.score-label { font-size: 13px; color: var(--muted); margin-bottom: 4px; }
+.small { font-size: 11.5px; color: var(--muted); }
+.delete-btn { background: #FEE2E2; color: var(--danger); border: none; padding: 4px 8px; border-radius: 6px; font-size: 12px; cursor: pointer; }
+.hotel-table { overflow-x: auto; }
+textarea { width: 100%; min-height: 100px; padding: 12px; border: 1.5px solid #E2E8F0; border-radius: 10px; font-size: 13.5px; font-family: inherit; outline: none; resize: vertical; }
+@media (max-width: 768px) {
+  .header { padding: 20px 16px 18px; }
+  .header h1 { font-size: 22px; }
+  .container { padding: 14px 12px 30px; }
+  .toolbar { padding: 12px; gap: 10px; }
+  .section { padding: 16px 12px; }
+  table { font-size: 12.5px; display: block; overflow-x: auto; }
+  th, td { padding: 8px 6px; white-space: nowrap; }
+  .btn { padding: 10px 14px; min-height: 44px; }
+}
+@media (max-width: 480px) {
+  .toolbar { flex-direction: column; align-items: stretch; }
+  .btn { width: 100%; }
+}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>Creatif Events — Operations CRM</h1>
+  <p>October 2026 • Calendar • Sales • Execution • December Pipeline</p>
+</div>
+<div class="container">
+  <a class="back" href="https://htmlpreview.github.io/?https://github.com/olaoladunni6-cyber/hospitalita-crm-report/blob/main/index.html">← Back to Main CRM</a>
+
+  <div class="toolbar">
+    <label>Staff</label>
+    <span id="staffLabel" style="font-weight:600; color:var(--primary); padding:6px 10px; background:#F1F5F9; border-radius:6px;">—</span>
+    <label>Date</label>
+    <input type="date" id="reportDate">
+    <button class="btn" onclick="loadAll()">Load</button>
+    <button class="btn" onclick="saveAll()">Save All</button>
+    <span id="save-msg" style="font-size:13px; color:var(--success); display:none;">✓ Saved</span>
+  </div>
+
+  <div class="section">
+    <h2>Calendar, Sales & Execution (28 pts)</h2>
+    <table>
+      <thead><tr><th>KPI</th><th>Target</th><th>Actual</th><th>Status</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Locked October event calendar</td><td>≥8 moments by 3 Oct</td><td><input type="number" class="input" id="act-calendar" placeholder="0"></td><td><span class="badge" id="st-calendar">—</span></td><td class="small">Published & signed off</td></tr>
+        <tr><td>Events delivered to brief</td><td>6</td><td><input type="number" class="input" id="act-delivered" placeholder="0"></td><td><span class="badge" id="st-delivered">—</span></td><td class="small">On time + elements present</td></tr>
+        <tr><td>Paid attendance / venue revenue</td><td>180 guests or ₦1.5m</td><td><input type="number" class="input" id="act-attendance" placeholder="0"></td><td><span class="badge" id="st-attendance">—</span></td><td class="small">Enter paying guests</td></tr>
+        <tr><td>Private quotes sent</td><td>8</td><td><input type="number" class="input" id="act-quotes" placeholder="0"></td><td><span class="badge" id="st-quotes">—</span></td><td class="small">Formal quotes</td></tr>
+        <tr><td>Private events confirmed (Oct–Dec)</td><td>3</td><td><input type="number" class="input" id="act-confirmed" placeholder="0"></td><td><span class="badge" id="st-confirmed">—</span></td><td class="small">Birthday, proposal, mixer, etc.</td></tr>
+        <tr><td>Run-of-show ready (events)</td><td>Every public event</td><td><input type="number" class="input" id="act-ros" placeholder="0"></td><td><span class="badge" id="st-ros">—</span></td><td class="small">Enter count with ROS 24h prior</td></tr>
+      </tbody>
+    </table>
+    <div class="note">Must-have moments: Independence (1–5 Oct), every Friday Single & Mingle, mid-month Date Night, 31 Oct Halloween. Private hires count toward revenue.</div>
+  </div>
+
+  <div class="section">
+    <h2>Guest Experience & December Pipeline (12 pts)</h2>
+    <table>
+      <thead><tr><th>KPI</th><th>Target</th><th>Actual</th><th>Status</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>New guest contacts captured</td><td>≥150</td><td><input type="number" class="input" id="act-contacts" placeholder="0"></td><td><span class="badge" id="st-contacts">—</span></td><td class="small">Name + phone + ticket type</td></tr>
+        <tr><td>Post-event follow-ups done</td><td>Every public night</td><td><input type="number" class="input" id="act-followup" placeholder="0"></td><td><span class="badge" id="st-followup">—</span></td><td class="small">Within 24h of event</td></tr>
+        <tr><td>December concepts drafted</td><td>10</td><td><input type="number" class="input" id="act-concepts" placeholder="0"></td><td><span class="badge" id="st-concepts">—</span></td><td class="small">Nov–Dec calendar draft</td></tr>
+        <tr><td>December warm holds / deposits</td><td>5</td><td><input type="number" class="input" id="act-holds" placeholder="0"></td><td><span class="badge" id="st-holds">—</span></td><td class="small">Nights or private hires</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>Event Tracker</h2>
+    <div class="hotel-table">
+      <table>
+        <thead>
+          <tr><th>Event Name</th><th>Date</th><th>Type</th><th>Guests / Revenue</th><th>Status</th><th></th></tr>
+        </thead>
+        <tbody id="eventBody"></tbody>
+      </table>
+    </div>
+    <div style="margin-top:12px; display:flex; gap:10px;">
+      <button class="btn" onclick="addEventRow()">+ Add Event</button>
+      <button class="btn btn-ghost" onclick="saveEvents()">Save Events</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Score Preview</h2>
+    <div class="score-box">
+      <div class="score-label">Indicative Creatif Score (40 pts max)</div>
+      <strong id="score-display">—</strong> <span style="font-size:18px; color:var(--muted);">/ 40</span>
+      <div id="salary-band" style="margin-top:8px; font-size:14px; color:var(--primary);"></div>
+    </div>
+    <div class="note">This tracks the Creatif workstream only. Full role score (with Social) is on the Social Media dashboard. Salary gate applies to the combined score.</div>
+    <button class="btn" style="margin-top:12px;" onclick="calcScore()">Recalculate</button>
+  </div>
+
+  <div class="section">
+    <h2>Weekly Notes</h2>
+    <textarea id="weeklyNotes" placeholder="Events this week:&#10;Tickets sold / guests:&#10;Private enquiries:&#10;Next week lock:&#10;Blockers:"></textarea>
+    <button class="btn" style="margin-top:10px;" onclick="saveNotes()">Save Notes</button>
+  </div>
+</div>
+
+<script>
+const KEYS = ['calendar','delivered','attendance','quotes','confirmed','ros','contacts','followup','concepts','holds'];
+const TARGETS = { calendar:8, delivered:6, attendance:180, quotes:8, confirmed:3, ros:6, contacts:150, followup:6, concepts:10, holds:5 };
+const EVENT_TYPES = ['Friday Night','Date Night','Independence','Halloween','Private Hire','Sunday Buffet','Other'];
+const STATUS_OPTIONS = ['Planned','Promo Live','Sold Out','Delivered','Cancelled','Hold'];
+let STAFF_CODE = 'CR1';
+
+function todayISO() { return new Date().toISOString().slice(0,10); }
+function storageKey(type) { return 'cr2026_' + STAFF_CODE + '_' + type; }
+function getStatus(actual, target) {
+  if (!target || target <= 0) return { text: '—', cls: '' };
+  const pct = (Number(actual)||0) / target * 100;
+  if (pct >= 100) return { text: 'Ahead', cls: 'ahead' };
+  if (pct >= 80) return { text: 'On Track', cls: 'on-track' };
+  if (pct >= 60) return { text: 'At Risk', cls: 'at-risk' };
+  return { text: 'Behind', cls: 'behind' };
+}
+function setBadge(id, actual, target) {
+  const s = getStatus(actual, target);
+  const el = document.getElementById(id);
+  if (el) { el.textContent = s.text; el.className = 'badge ' + s.cls; }
+}
+
+function loadAll() {
+  const date = document.getElementById('reportDate').value || todayISO();
+  const data = JSON.parse(localStorage.getItem(storageKey('kpi_'+date)) || '{}');
+  KEYS.forEach(k => {
+    const el = document.getElementById('act-'+k);
+    if (el) el.value = data[k] ?? '';
+  });
+  document.getElementById('weeklyNotes').value = localStorage.getItem(storageKey('notes_'+date)) || '';
+  updateStatuses();
+  calcScore();
+  loadEvents();
+}
+
+function saveAll() {
+  const date = document.getElementById('reportDate').value || todayISO();
+  const data = {};
+  KEYS.forEach(k => { data[k] = document.getElementById('act-'+k)?.value || ''; });
+  localStorage.setItem(storageKey('kpi_'+date), JSON.stringify(data));
+  updateStatuses();
+  calcScore();
+  const msg = document.getElementById('save-msg');
+  msg.style.display = 'inline';
+  setTimeout(() => msg.style.display = 'none', 1500);
+}
+
+function updateStatuses() {
+  KEYS.forEach(k => setBadge('st-'+k, document.getElementById('act-'+k)?.value, TARGETS[k]));
+}
+
+function calcScore() {
+  const delivered = Number(document.getElementById('act-delivered').value) || 0;
+  const attendance = Number(document.getElementById('act-attendance').value) || 0;
+  const confirmed = Number(document.getElementById('act-confirmed').value) || 0;
+  const contacts = Number(document.getElementById('act-contacts').value) || 0;
+  const holds = Number(document.getElementById('act-holds').value) || 0;
+
+  const score = Math.round(
+    Math.min(delivered/6,1)*8 +
+    Math.min(attendance/180,1)*8 +
+    Math.min(confirmed/3,1)*5 +
+    Math.min(contacts/150,1)*4 +
+    Math.min(holds/5,1)*5
+  );
+  const scoreEl = document.getElementById('score-display');
+  scoreEl.textContent = score;
+  scoreEl.style.animation = 'none';
+  void scoreEl.offsetWidth;
+  scoreEl.style.animation = 'scorePop 0.35s ease';
+  document.getElementById('salary-band').textContent = score + ' / 40 Creatif points';
+}
+
+function addEventRow(data = {}) {
+  const tbody = document.getElementById('eventBody');
+  const tr = document.createElement('tr');
+  const typeOpts = EVENT_TYPES.map(t => `<option ${data.type===t?'selected':''}>${t}</option>`).join('');
+  const statusOpts = STATUS_OPTIONS.map(s => `<option ${data.status===s?'selected':''}>${s}</option>`).join('');
+  tr.innerHTML = `
+    <td><input class="input input-wide" value="${data.name||''}" placeholder="Event name"></td>
+    <td><input type="date" class="input" value="${data.date||''}" style="max-width:130px;"></td>
+    <td><select class="input input-wide" style="max-width:130px;">${typeOpts}</select></td>
+    <td><input class="input" value="${data.guests||''}" placeholder="Guests / ₦"></td>
+    <td><select class="input input-wide" style="max-width:120px;">${statusOpts}</select></td>
+    <td><button class="delete-btn" onclick="this.closest('tr').remove()">✕</button></td>
+  `;
+  tbody.appendChild(tr);
+}
+
+function saveEvents() {
+  const rows = document.querySelectorAll('#eventBody tr');
+  const events = [];
+  rows.forEach(row => {
+    const inputs = row.querySelectorAll('input, select');
+    events.push({
+      name: inputs[0].value, date: inputs[1].value, type: inputs[2].value,
+      guests: inputs[3].value, status: inputs[4].value
+    });
+  });
+  localStorage.setItem(storageKey('events'), JSON.stringify(events));
+  document.getElementById('save-msg').style.display = 'inline';
+  setTimeout(() => document.getElementById('save-msg').style.display = 'none', 1500);
+}
+
+function loadEvents() {
+  const saved = localStorage.getItem(storageKey('events'));
+  document.getElementById('eventBody').innerHTML = '';
+  if (!saved) { addEventRow(); return; }
+  try { JSON.parse(saved).forEach(e => addEventRow(e)); } catch(e) { addEventRow(); }
+}
+
+function saveNotes() {
+  const date = document.getElementById('reportDate').value || todayISO();
+  localStorage.setItem(storageKey('notes_'+date), document.getElementById('weeklyNotes').value);
+  document.getElementById('save-msg').style.display = 'inline';
+  setTimeout(() => document.getElementById('save-msg').style.display = 'none', 1500);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const saved = localStorage.getItem('cr_selected_staff');
+  if (saved) STAFF_CODE = saved;
+  document.getElementById('staffLabel').textContent = STAFF_CODE || 'Staff';
+  document.getElementById('reportDate').value = todayISO();
+  loadAll();
+});
+</script>
+</body>
+</html>
