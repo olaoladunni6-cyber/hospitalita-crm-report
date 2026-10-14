@@ -21,14 +21,8 @@ body {
   color: var(--text);
   min-height: 100vh;
 }
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-@keyframes modalIn {
-  from { opacity: 0; transform: scale(0.96) translateY(8px); }
-  to { opacity: 1; transform: scale(1) translateY(0); }
-}
+@keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes modalIn { from { opacity: 0; transform: scale(0.96) translateY(8px); } to { opacity: 1; transform: scale(1) translateY(0); } }
 .header {
   background: linear-gradient(135deg, var(--primary) 0%, #1A4A7A 100%);
   color: white;
@@ -47,19 +41,8 @@ body {
 }
 .header h1 { font-size: 32px; font-weight: 600; letter-spacing: -0.5px; }
 .header p { opacity: 0.85; margin-top: 6px; font-size: 15px; }
-.container {
-  max-width: 920px;
-  margin: -20px auto 40px;
-  padding: 0 20px;
-  position: relative;
-  z-index: 2;
-}
-.brand-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 18px;
-  margin-top: 10px;
-}
+.container { max-width: 920px; margin: -20px auto 40px; padding: 0 20px; position: relative; z-index: 2; }
+.brand-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; margin-top: 10px; }
 .brand-card {
   background: var(--card);
   border-radius: 16px;
@@ -87,94 +70,29 @@ body {
   transition: transform 0.3s ease;
 }
 .brand-card:hover::before { transform: scaleX(1); }
-.brand-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 14px 30px rgba(15,44,76,0.12);
-}
+.brand-card:hover { transform: translateY(-5px); box-shadow: 0 14px 30px rgba(15,44,76,0.12); }
 .brand-card h3 { font-size: 18px; color: var(--primary); margin-bottom: 6px; font-weight: 600; }
 .brand-card p { font-size: 13px; color: var(--muted); }
 .brand-card.disabled { opacity: 0.55; cursor: default; }
 .brand-card.disabled:hover { transform: none; box-shadow: 0 6px 20px rgba(15,44,76,0.08); }
 .brand-card.disabled::before { display: none; }
-.note {
-  text-align: center;
-  margin-top: 28px;
-  font-size: 13.5px;
-  color: var(--muted);
-  background: white;
-  padding: 14px 18px;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  animation: fadeUp 0.6s ease 0.25s backwards;
-}
+.note { text-align: center; margin-top: 28px; font-size: 13.5px; color: var(--muted); background: white; padding: 14px 18px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); animation: fadeUp 0.6s ease 0.25s backwards; }
 .admin-link { text-align: center; margin-top: 16px; }
-.admin-link a {
-  color: var(--accent);
-  font-size: 13px;
-  cursor: pointer;
-  text-decoration: none;
-  padding: 8px 16px;
-  border-radius: 20px;
-  transition: background 0.2s, transform 0.2s;
-  display: inline-block;
-}
+.admin-link a { color: var(--accent); font-size: 13px; cursor: pointer; text-decoration: none; padding: 8px 16px; border-radius: 20px; transition: background 0.2s, transform 0.2s; display: inline-block; }
 .admin-link a:hover { background: rgba(26,107,181,0.08); transform: translateY(-1px); }
-.modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(15,44,76,0.45);
-  backdrop-filter: blur(4px);
-  align-items: center;
-  justify-content: center;
-  z-index: 100;
-  padding: 16px;
-}
+.modal { display: none; position: fixed; inset: 0; background: rgba(15,44,76,0.45); backdrop-filter: blur(4px); align-items: center; justify-content: center; z-index: 100; padding: 16px; }
 .modal.active { display: flex; }
-.modal-box {
-  background: white;
-  padding: 32px 28px;
-  border-radius: 18px;
-  width: 100%;
-  max-width: 400px;
-  text-align: center;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-  animation: modalIn 0.25s ease;
-}
+.modal-box { background: white; padding: 32px 28px; border-radius: 18px; width: 100%; max-width: 400px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.15); animation: modalIn 0.25s ease; }
 .modal-box h3 { color: var(--primary); font-size: 20px; margin-bottom: 8px; }
 .modal-box p { font-size: 13px; color: var(--muted); margin-bottom: 12px; }
-.modal-box input {
-  width: 100%;
-  padding: 14px;
-  border: 1.5px solid #E2E8F0;
-  border-radius: 10px;
-  font-size: 16px;
-  margin: 8px 0;
-  text-align: center;
-  outline: none;
-  transition: border 0.2s, box-shadow 0.2s;
-}
+.modal-box input { width: 100%; padding: 14px; border: 1.5px solid #E2E8F0; border-radius: 10px; font-size: 16px; margin: 8px 0; text-align: center; outline: none; transition: border 0.2s, box-shadow 0.2s; }
 .modal-box input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(26,107,181,0.12); }
-.modal-box button {
-  background: linear-gradient(135deg, var(--accent), #155A9C);
-  color: white;
-  border: none;
-  padding: 14px;
-  border-radius: 10px;
-  width: 100%;
-  cursor: pointer;
-  font-size: 15px;
-  font-weight: 600;
-  margin-top: 8px;
-  transition: transform 0.15s, opacity 0.2s;
-  min-height: 48px;
-}
+.modal-box button { background: linear-gradient(135deg, var(--accent), #155A9C); color: white; border: none; padding: 14px; border-radius: 10px; width: 100%; cursor: pointer; font-size: 15px; font-weight: 600; margin-top: 8px; transition: transform 0.15s, opacity 0.2s; min-height: 48px; }
 .modal-box button:hover { opacity: 0.95; }
 .modal-box button:active { transform: scale(0.98); }
 .error { color: #E74C3C; font-size: 13px; display: none; margin-top: 10px; }
 .success { color: #27AE60; font-size: 13px; display: none; margin-top: 10px; }
 .code-list input { margin: 6px 0; }
-
 @media (max-width: 600px) {
   .header { padding: 28px 16px 26px; }
   .header h1 { font-size: 26px; }
@@ -198,9 +116,12 @@ body {
       <h3>Hotel Per Hour</h3>
       <p>Enter your staff code</p>
     </div>
+    <div class="brand-card" onclick="openBrand('social-media', 'Social Media')">
+      <h3>Social Media</h3>
+      <p>Enter your staff code</p>
+    </div>
     <div class="brand-card disabled"><h3>Posh Hotels</h3><p>Coming soon</p></div>
     <div class="brand-card disabled"><h3>Streetfood NG</h3><p>Coming soon</p></div>
-    <div class="brand-card disabled"><h3>Gold Privilege</h3><p>Coming soon</p></div>
   </div>
   <div class="note">Select your brand and enter the code provided by management.</div>
   <div class="admin-link"><a onclick="openAdmin()">Set / Change Login Codes</a></div>
@@ -220,10 +141,18 @@ body {
     <h3>Set Login Codes</h3>
     <p>Master code required</p>
     <input type="password" id="adminCode" placeholder="Master Code" autocomplete="off">
-    <div class="code-list" id="codeInputs" style="display:none;">
-      <input type="text" id="code1" placeholder="Staff Code 1">
-      <input type="text" id="code2" placeholder="Staff Code 2">
-      <input type="text" id="code3" placeholder="Staff Code 3">
+    <div id="adminFields" style="display:none;">
+      <p style="font-size:12px; margin-top:10px;"><strong>Hotel Per Hour</strong></p>
+      <div class="code-list">
+        <input type="text" id="hph1" placeholder="HPH Code 1">
+        <input type="text" id="hph2" placeholder="HPH Code 2">
+        <input type="text" id="hph3" placeholder="HPH Code 3">
+      </div>
+      <p style="font-size:12px; margin-top:10px;"><strong>Social Media</strong></p>
+      <div class="code-list">
+        <input type="text" id="sm1" placeholder="SM Code 1">
+        <input type="text" id="sm2" placeholder="SM Code 2">
+      </div>
     </div>
     <button id="adminBtn" onclick="verifyAdmin()">Verify</button>
     <div class="error" id="adminError">Incorrect master code</div>
@@ -233,15 +162,17 @@ body {
 
 <script>
 const MASTER_CODE = 'HPHADMIN';
-const DEFAULT_CODES = ['HPH1', 'HPH2', 'HPH3'];
-const DASHBOARD_URL = 'https://htmlpreview.github.io/?https://github.com/olaoladunni6-cyber/hospitalita-crm-report/blob/main/staff/hotel-per-hour.html';
+const HPH_DASH = 'https://htmlpreview.github.io/?https://github.com/olaoladunni6-cyber/hospitalita-crm-report/blob/main/staff/hotel-per-hour.html';
+const SM_DASH = 'https://htmlpreview.github.io/?https://github.com/olaoladunni6-cyber/hospitalita-crm-report/blob/main/staff/social-media.html';
 let currentBrand = '';
-let validCodes = [];
+let hphCodes = ['HPH1','HPH2','HPH3'];
+let smCodes = ['SM1','SM2'];
 
 function loadCodes() {
-  const saved = localStorage.getItem('hph_staff_codes');
-  validCodes = saved ? JSON.parse(saved) : DEFAULT_CODES;
-  if (!Array.isArray(validCodes) || validCodes.length === 0) validCodes = DEFAULT_CODES;
+  const h = localStorage.getItem('hph_staff_codes');
+  const s = localStorage.getItem('sm_staff_codes');
+  if (h) { try { hphCodes = JSON.parse(h); } catch(e) {} }
+  if (s) { try { smCodes = JSON.parse(s); } catch(e) {} }
 }
 
 function openBrand(brand, name) {
@@ -255,9 +186,12 @@ function openBrand(brand, name) {
 
 function checkCode() {
   const entered = document.getElementById('codeInput').value.trim().toUpperCase();
-  if (validCodes.includes(entered) && currentBrand === 'hotel-per-hour') {
+  if (currentBrand === 'hotel-per-hour' && hphCodes.includes(entered)) {
     localStorage.setItem('hph_selected_staff', entered);
-    window.location.href = DASHBOARD_URL;
+    window.location.href = HPH_DASH;
+  } else if (currentBrand === 'social-media' && smCodes.includes(entered)) {
+    localStorage.setItem('sm_selected_staff', entered);
+    window.location.href = SM_DASH;
   } else {
     document.getElementById('errorMsg').style.display = 'block';
   }
@@ -265,7 +199,7 @@ function checkCode() {
 
 function openAdmin() {
   document.getElementById('adminCode').value = '';
-  document.getElementById('codeInputs').style.display = 'none';
+  document.getElementById('adminFields').style.display = 'none';
   document.getElementById('adminBtn').textContent = 'Verify';
   document.getElementById('adminBtn').onclick = verifyAdmin;
   document.getElementById('adminError').style.display = 'none';
@@ -278,10 +212,12 @@ function verifyAdmin() {
   const entered = document.getElementById('adminCode').value.trim().toUpperCase();
   if (entered === MASTER_CODE) {
     document.getElementById('adminError').style.display = 'none';
-    document.getElementById('codeInputs').style.display = 'block';
-    document.getElementById('code1').value = validCodes[0] || '';
-    document.getElementById('code2').value = validCodes[1] || '';
-    document.getElementById('code3').value = validCodes[2] || '';
+    document.getElementById('adminFields').style.display = 'block';
+    document.getElementById('hph1').value = hphCodes[0] || '';
+    document.getElementById('hph2').value = hphCodes[1] || '';
+    document.getElementById('hph3').value = hphCodes[2] || '';
+    document.getElementById('sm1').value = smCodes[0] || '';
+    document.getElementById('sm2').value = smCodes[1] || '';
     document.getElementById('adminBtn').textContent = 'Save Codes';
     document.getElementById('adminBtn').onclick = saveCodes;
     document.getElementById('adminCode').disabled = true;
@@ -291,14 +227,18 @@ function verifyAdmin() {
 }
 
 function saveCodes() {
-  const codes = [
-    document.getElementById('code1').value.trim().toUpperCase(),
-    document.getElementById('code2').value.trim().toUpperCase(),
-    document.getElementById('code3').value.trim().toUpperCase()
+  hphCodes = [
+    document.getElementById('hph1').value.trim().toUpperCase(),
+    document.getElementById('hph2').value.trim().toUpperCase(),
+    document.getElementById('hph3').value.trim().toUpperCase()
   ].filter(c => c);
-  if (codes.length === 0) { alert('Enter at least one code'); return; }
-  validCodes = codes;
-  localStorage.setItem('hph_staff_codes', JSON.stringify(codes));
+  smCodes = [
+    document.getElementById('sm1').value.trim().toUpperCase(),
+    document.getElementById('sm2').value.trim().toUpperCase()
+  ].filter(c => c);
+  if (hphCodes.length === 0 && smCodes.length === 0) { alert('Enter at least one code'); return; }
+  localStorage.setItem('hph_staff_codes', JSON.stringify(hphCodes));
+  localStorage.setItem('sm_staff_codes', JSON.stringify(smCodes));
   document.getElementById('adminSuccess').style.display = 'block';
   setTimeout(() => {
     document.getElementById('adminModal').classList.remove('active');
