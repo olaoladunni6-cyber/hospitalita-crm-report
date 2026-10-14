@@ -18,29 +18,74 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color:
 .brand-card p { font-size: 13px; color: var(--muted); }
 .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); align-items: center; justify-content: center; z-index: 100; }
 .modal.active { display: flex; }
-.modal-box { background: white; padding: 28px; border-radius: 12px; width: 90%; max-width: 380px; text-align: center; }
-.modal-box input { width: 100%; padding: 12px; border: 1px solid #D6E6F5; border-radius: 8px; font-size: 16px; margin: 12px 0; text-align: center; }
-.modal-box button { background: var(--secondary); color: white; border: none; padding: 12px; border-radius: 8px; width: 100%; cursor: pointer; }
+.modal-box { background: white; padding: 28px; border-radius: 12px; width: 90%; max-width: 420px; text-align: center; }
+.modal-box input { width: 100%; padding: 12px; border: 1px solid #D6E6F5; border-radius: 8px; font-size: 16px; margin: 10px 0; text-align: center; }
+.modal-box button { background: var(--secondary); color: white; border: none; padding: 12px; border-radius: 8px; width: 100%; cursor: pointer; margin-top: 6px; }
+.modal-box button.secondary { background: #7F8C8D; }
 .error { color: #E74C3C; font-size: 13px; display: none; margin-top: 8px; }
-.note { text-align: center; margin-top: 28px; font-size: 13px; color: var(--muted); }
+.success { color: #27AE60; font-size: 13px; display: none; margin-top: 8px; }
+.note { text-align: center; margin-top: 24px; font-size: 13px; color: var(--muted); }
+.admin-link { text-align: center; margin-top: 16px; }
+.admin-link a { color: var(--secondary); font-size: 13px; cursor: pointer; text-decoration: underline; }
+.code-list { margin: 12px 0; }
+.code-list input { margin: 6px 0; }
 </style>
 </head>
 <body>
 <div class="header"><h1>Hospitalita & Inovacao CRM</h1><p>Select brand • Enter code • Update daily</p></div>
 <div class="container">
   <div class="brand-grid">
-    <div class="brand-card" onclick="openBrand('hotel-per-hour', 'Hotel Per Hour')"><h3>Hotel Per Hour</h3><p>Code: HPH1 / HPH2 / HPH3</p></div>
+    <div class="brand-card" onclick="openBrand('hotel-per-hour', 'Hotel Per Hour')"><h3>Hotel Per Hour</h3><p id="codeHint">Staff codes</p></div>
     <div class="brand-card" style="opacity:0.6;cursor:default;"><h3>Posh Hotels</h3><p>Coming soon</p></div>
     <div class="brand-card" style="opacity:0.6;cursor:default;"><h3>Streetfood NG</h3><p>Coming soon</p></div>
     <div class="brand-card" style="opacity:0.6;cursor:default;"><h3>Gold Privilege</h3><p>Coming soon</p></div>
   </div>
-  <div class="note">Hotel Per Hour codes: <strong>HPH1</strong> • <strong>HPH2</strong> • <strong>HPH3</strong></div>
+  <div class="note" id="codesDisplay">Hotel Per Hour codes: <strong>—</strong></div>
+  <div class="admin-link"><a onclick="openAdmin()">Set / Change Login Codes</a></div>
 </div>
-<div class="modal" id="codeModal"><div class="modal-box"><h3 id="modalTitle">Enter Code</h3><input type="password" id="codeInput" placeholder="Code"><button onclick="checkCode()">Open Dashboard</button><div class="error" id="errorMsg">Incorrect code</div></div></div>
+
+<!-- Staff code modal -->
+<div class="modal" id="codeModal">
+  <div class="modal-box">
+    <h3 id="modalTitle">Enter Code</h3>
+    <input type="password" id="codeInput" placeholder="Staff Code">
+    <button onclick="checkCode()">Open Dashboard</button>
+    <div class="error" id="errorMsg">Incorrect code</div>
+  </div>
+</div>
+
+<!-- Admin modal -->
+<div class="modal" id="adminModal">
+  <div class="modal-box">
+    <h3>Set Login Codes</h3>
+    <p style="font-size:13px; color:#7F8C8D; margin:8px 0;">Master code required to change staff codes</p>
+    <input type="password" id="adminCode" placeholder="Master Code">
+    <div class="code-list" id="codeInputs" style="display:none;">
+      <input type="text" id="code1" placeholder="Staff Code 1">
+      <input type="text" id="code2" placeholder="Staff Code 2">
+      <input type="text" id="code3" placeholder="Staff Code 3">
+    </div>
+    <button id="adminBtn" onclick="verifyAdmin()">Verify</button>
+    <div class="error" id="adminError">Incorrect master code</div>
+    <div class="success" id="adminSuccess">Codes updated</div>
+  </div>
+</div>
+
 <script>
-const VALID_CODES = ['HPH1', 'HPH2', 'HPH3'];
+const MASTER_CODE = 'HPHADMIN';
+const DEFAULT_CODES = ['HPH1', 'HPH2', 'HPH3'];
 const DASHBOARD_URL = 'https://htmlpreview.github.io/?https://github.com/olaoladunni6-cyber/hospitalita-crm-report/blob/main/staff/hotel-per-hour.html';
 let currentBrand = '';
+let validCodes = [];
+
+function loadCodes() {
+  const saved = localStorage.getItem('hph_staff_codes');
+  validCodes = saved ? JSON.parse(saved) : DEFAULT_CODES;
+  if (!Array.isArray(validCodes) || validCodes.length === 0) validCodes = DEFAULT_CODES;
+  document.getElementById('codesDisplay').innerHTML = 'Hotel Per Hour codes: <strong>' + validCodes.join(' • ') + '</strong>';
+  document.getElementById('codeHint').textContent = validCodes.join(' / ');
+}
+
 function openBrand(brand, name) {
   currentBrand = brand;
   document.getElementById('modalTitle').textContent = name + ' — Enter Code';
@@ -49,17 +94,70 @@ function openBrand(brand, name) {
   document.getElementById('codeModal').classList.add('active');
   setTimeout(() => document.getElementById('codeInput').focus(), 100);
 }
+
 function checkCode() {
   const entered = document.getElementById('codeInput').value.trim().toUpperCase();
-  if (VALID_CODES.includes(entered) && currentBrand === 'hotel-per-hour') {
+  if (validCodes.includes(entered) && currentBrand === 'hotel-per-hour') {
     localStorage.setItem('hph_selected_staff', entered);
     window.location.href = DASHBOARD_URL;
   } else {
     document.getElementById('errorMsg').style.display = 'block';
   }
 }
+
+function openAdmin() {
+  document.getElementById('adminCode').value = '';
+  document.getElementById('codeInputs').style.display = 'none';
+  document.getElementById('adminBtn').textContent = 'Verify';
+  document.getElementById('adminBtn').onclick = verifyAdmin;
+  document.getElementById('adminError').style.display = 'none';
+  document.getElementById('adminSuccess').style.display = 'none';
+  document.getElementById('adminModal').classList.add('active');
+  setTimeout(() => document.getElementById('adminCode').focus(), 100);
+}
+
+function verifyAdmin() {
+  const entered = document.getElementById('adminCode').value.trim().toUpperCase();
+  if (entered === MASTER_CODE) {
+    document.getElementById('adminError').style.display = 'none';
+    document.getElementById('codeInputs').style.display = 'block';
+    document.getElementById('code1').value = validCodes[0] || '';
+    document.getElementById('code2').value = validCodes[1] || '';
+    document.getElementById('code3').value = validCodes[2] || '';
+    document.getElementById('adminBtn').textContent = 'Save Codes';
+    document.getElementById('adminBtn').onclick = saveCodes;
+    document.getElementById('adminCode').disabled = true;
+  } else {
+    document.getElementById('adminError').style.display = 'block';
+  }
+}
+
+function saveCodes() {
+  const codes = [
+    document.getElementById('code1').value.trim().toUpperCase(),
+    document.getElementById('code2').value.trim().toUpperCase(),
+    document.getElementById('code3').value.trim().toUpperCase()
+  ].filter(c => c);
+  if (codes.length === 0) {
+    alert('Enter at least one code');
+    return;
+  }
+  validCodes = codes;
+  localStorage.setItem('hph_staff_codes', JSON.stringify(codes));
+  loadCodes();
+  document.getElementById('adminSuccess').style.display = 'block';
+  setTimeout(() => {
+    document.getElementById('adminModal').classList.remove('active');
+    document.getElementById('adminCode').disabled = false;
+  }, 1200);
+}
+
 document.getElementById('codeModal').addEventListener('click', function(e) { if (e.target === this) this.classList.remove('active'); });
+document.getElementById('adminModal').addEventListener('click', function(e) { if (e.target === this) this.classList.remove('active'); });
 document.getElementById('codeInput').addEventListener('keypress', function(e) { if (e.key === 'Enter') checkCode(); });
+document.getElementById('adminCode').addEventListener('keypress', function(e) { if (e.key === 'Enter') verifyAdmin(); });
+
+loadCodes();
 </script>
 </body>
 </html>
