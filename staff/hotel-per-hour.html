@@ -5,80 +5,243 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hotel Per Hour | Partnership CRM — October 2026</title>
 <style>
-:root { --primary: #1F4E79; --secondary: #2E75B6; --success: #27AE60; --warning: #F39C12; --danger: #E74C3C; --bg: #F4F6F9; --card: #FFFFFF; --text: #2C3E50; --muted: #7F8C8D; }
+:root {
+  --primary: #0F2C4C;
+  --accent: #1A6BB5;
+  --gold: #C9A227;
+  --success: #1E9A5B;
+  --warning: #E67E22;
+  --danger: #E74C3C;
+  --bg: #F5F7FB;
+  --card: #FFFFFF;
+  --text: #1E2A3A;
+  --muted: #6B7C93;
+}
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.45; }
-.header { background: linear-gradient(135deg, #0D47A1, var(--secondary)); color: white; padding: 22px 28px; }
-.header h1 { font-size: 24px; font-weight: 600; }
-.header p { opacity: 0.9; font-size: 14px; margin-top: 4px; }
-.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-.section { background: var(--card); border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
-.section h2 { font-size: 17px; color: var(--primary); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+.header {
+  background: linear-gradient(135deg, var(--primary) 0%, #1A4A7A 60%, #0D3A66 100%);
+  color: white;
+  padding: 26px 28px 22px;
+  position: relative;
+}
+.header h1 {
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+.header p {
+  opacity: 0.85;
+  font-size: 14px;
+  margin-top: 4px;
+}
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 20px 18px 40px;
+}
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 16px;
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 500;
+}
+.back:hover { text-decoration: underline; }
+.toolbar {
+  background: white;
+  border-radius: 14px;
+  padding: 14px 16px;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 10px rgba(15,44,76,0.06);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.toolbar label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary);
+}
+.toolbar select, .toolbar input[type="date"] {
+  padding: 8px 12px;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 8px;
+  font-size: 13.5px;
+  outline: none;
+}
+.toolbar select:focus, .toolbar input:focus { border-color: var(--accent); }
+.btn {
+  background: linear-gradient(135deg, var(--accent), #155A9C);
+  color: white;
+  border: none;
+  padding: 9px 16px;
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.btn:hover { opacity: 0.92; }
+.btn-ghost {
+  background: #F1F5F9;
+  color: var(--primary);
+}
+.section {
+  background: var(--card);
+  border-radius: 14px;
+  padding: 20px 18px;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 12px rgba(15,44,76,0.06);
+  border: 1px solid rgba(226,232,240,0.6);
+}
+.section h2 {
+  font-size: 16.5px;
+  color: var(--primary);
+  margin-bottom: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section h2::before {
+  content: '';
+  width: 4px;
+  height: 18px;
+  background: linear-gradient(180deg, var(--accent), var(--gold));
+  border-radius: 2px;
+}
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
-th { text-align: left; padding: 9px 8px; background: #F8FAFC; color: var(--primary); font-weight: 600; }
-td { padding: 8px; border-bottom: 1px solid #F0F3F7; vertical-align: middle; }
-.badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; min-width: 64px; text-align: center; }
+th {
+  text-align: left;
+  padding: 10px 8px;
+  background: #F8FAFC;
+  color: var(--primary);
+  font-weight: 600;
+  border-bottom: 2px solid #E8EEF4;
+}
+td { padding: 9px 8px; border-bottom: 1px solid #F1F5F9; vertical-align: middle; }
+tr:hover td { background: #FAFCFF; }
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11.5px;
+  font-weight: 600;
+  min-width: 68px;
+  text-align: center;
+}
 .badge.on-track { background: #E8F8EF; color: var(--success); }
 .badge.at-risk { background: #FEF5E7; color: var(--warning); }
 .badge.behind { background: #FDEDEC; color: var(--danger); }
-.badge.ahead { background: #EBF5FB; color: var(--secondary); }
-.note { font-size: 12.5px; color: var(--muted); margin-top: 12px; padding: 12px; background: #F8FAFC; border-radius: 8px; }
-.btn { background: var(--secondary); color: white; border: none; padding: 8px 16px; border-radius: 6px; font-size: 13px; cursor: pointer; }
-.btn:hover { opacity: 0.9; }
-.btn-secondary { background: #7F8C8D; }
-.input { width: 100%; max-width: 80px; padding: 5px 6px; border: 1px solid #D6E6F5; border-radius: 4px; font-size: 13px; text-align: right; }
+.badge.ahead { background: #EBF5FB; color: var(--accent); }
+.note {
+  font-size: 12.5px;
+  color: var(--muted);
+  margin-top: 14px;
+  padding: 12px 14px;
+  background: #F8FAFC;
+  border-radius: 10px;
+  border-left: 3px solid var(--accent);
+}
+.input {
+  width: 100%;
+  max-width: 78px;
+  padding: 6px 8px;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 6px;
+  font-size: 13px;
+  text-align: right;
+  outline: none;
+}
+.input:focus { border-color: var(--accent); }
 .input-wide { max-width: 140px; }
-.bar { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
-.bar label { font-size: 13px; font-weight: 600; }
-.bar input[type="date"], .bar select { padding: 7px 10px; border: 1px solid #D6E6F5; border-radius: 6px; font-size: 13px; }
-.back { display: inline-block; margin-bottom: 14px; color: var(--secondary); text-decoration: none; font-size: 13px; }
-.score-box { background: #EBF5FB; border-radius: 10px; padding: 16px; margin-top: 12px; }
-.score-box strong { font-size: 22px; color: var(--primary); }
-.score-label { font-size: 13px; color: var(--muted); }
+.score-box {
+  background: linear-gradient(135deg, #EBF5FB 0%, #F0F7FF 100%);
+  border-radius: 12px;
+  padding: 18px;
+  margin-top: 8px;
+  text-align: center;
+}
+.score-box strong {
+  font-size: 32px;
+  color: var(--primary);
+  font-weight: 700;
+}
+.score-label { font-size: 13px; color: var(--muted); margin-bottom: 4px; }
 .zone-total { font-weight: 600; background: #F8FAFC; }
-.checklist { font-size: 12.5px; color: #555; margin-top: 8px; }
-.checklist li { margin: 3px 0; }
+.checklist { font-size: 13px; color: #4A5568; margin: 8px 0 0 18px; }
+.checklist li { margin: 5px 0; }
 .small { font-size: 11.5px; color: var(--muted); }
-.delete-btn { background: var(--danger); color: white; border: none; padding: 3px 7px; border-radius: 4px; font-size: 11px; cursor: pointer; }
+.delete-btn {
+  background: #FEE2E2;
+  color: var(--danger);
+  border: none;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.delete-btn:hover { background: #FECACA; }
 .hotel-table { overflow-x: auto; }
+textarea {
+  width: 100%;
+  min-height: 110px;
+  padding: 12px;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 10px;
+  font-size: 13.5px;
+  font-family: inherit;
+  outline: none;
+  resize: vertical;
+}
+textarea:focus { border-color: var(--accent); }
 </style>
 </head>
 <body>
 <div class="header">
   <h1>Hotel Per Hour — Partnership CRM</h1>
-  <p>October 2026 KPI Pack • Partnership Coordinator • 6 Priority Zones • Guest-Ready Inventory</p>
+  <p>October 2026 • 6 Priority Zones • Guest-Ready Inventory</p>
 </div>
 <div class="container">
   <a class="back" href="https://htmlpreview.github.io/?https://github.com/olaoladunni6-cyber/hospitalita-crm-report/blob/main/index.html">← Back to Main CRM</a>
 
-  <div class="bar">
-    <label>Staff:</label>
+  <div class="toolbar">
+    <label>Staff</label>
     <select id="staffSelect" onchange="changeStaff()">
       <option value="HPH1">Staff 1 (HPH1)</option>
       <option value="HPH2">Staff 2 (HPH2)</option>
       <option value="HPH3">Staff 3 (HPH3)</option>
     </select>
-    <label>Date:</label>
+    <label>Date</label>
     <input type="date" id="reportDate">
-    <button class="btn" onclick="loadAll()">Load Date</button>
+    <button class="btn" onclick="loadAll()">Load</button>
     <button class="btn" onclick="saveAll()">Save All</button>
     <span id="save-msg" style="font-size:13px; color:var(--success); display:none;">✓ Saved</span>
   </div>
 
-  <!-- Headline Targets -->
   <div class="section">
-    <h2>1. Headline Targets (Section 2 of KPI Pack)</h2>
+    <h2>Headline Targets</h2>
     <table>
       <thead>
-        <tr><th>Headline Result</th><th>Target</th><th>Stretch</th><th>Actual</th><th>Status</th><th>Why it matters</th></tr>
+        <tr><th>Result</th><th>Target</th><th>Stretch</th><th>Actual</th><th>Status</th><th>Note</th></tr>
       </thead>
       <tbody>
         <tr>
-          <td>New hotels signed (6 priority zones)</td>
+          <td>New hotels signed (6 zones)</td>
           <td>28</td><td>21</td>
           <td><input type="number" class="input" id="act-signed" placeholder="0"></td>
           <td><span class="badge" id="st-signed">—</span></td>
-          <td class="small">Closes Island + Mainland gap</td>
+          <td class="small">Island + Mainland gap</td>
         </tr>
         <tr>
           <td>New hotels LIVE & Guest-Ready</td>
@@ -88,126 +251,117 @@ td { padding: 8px; border-bottom: 1px solid #F0F3F7; vertical-align: middle; }
           <td class="small">Signed-only = 40% credit</td>
         </tr>
         <tr>
-          <td>Existing hotels physically revisited</td>
+          <td>Existing hotels revisited</td>
           <td>60 of 80</td><td>80 of 80</td>
           <td><input type="number" class="input" id="act-revisited" placeholder="0"></td>
           <td><span class="badge" id="st-revisited">—</span></td>
-          <td class="small">No dead listings for guests</td>
+          <td class="small">No dead listings</td>
         </tr>
         <tr>
-          <td>Existing hotels certified Guest-Ready</td>
+          <td>Existing hotels Guest-Ready</td>
           <td>48</td><td>64</td>
           <td><input type="number" class="input" id="act-certified" placeholder="0"></td>
           <td><span class="badge" id="st-certified">—</span></td>
           <td class="small">80% of revisited</td>
         </tr>
         <tr>
-          <td>Net live Guest-Ready inventory (31 Oct)</td>
+          <td>Net live Guest-Ready (31 Oct)</td>
           <td>80+</td><td>—</td>
           <td><input type="number" class="input" id="act-inventory" placeholder="0"></td>
           <td><span class="badge" id="st-inventory">—</span></td>
-          <td class="small">64+ existing ready + 16 new live</td>
+          <td class="small">64+ ready + 16 new</td>
         </tr>
       </tbody>
     </table>
-    <div class="note">Signed = agreement + rates + named contact. Live / Guest-Ready = published + passes all 10 checklist items. Signed-only scores 40% on acquisition KPI.</div>
+    <div class="note">Signed = agreement + rates + named contact. Live / Guest-Ready = published + all 10 checklist items passed.</div>
   </div>
 
-  <!-- Zone Tracker -->
   <div class="section">
-    <h2>2. Geographic Acquisition — 6 Priority Zones</h2>
+    <h2>Geographic Acquisition — 6 Priority Zones</h2>
     <table>
       <thead>
         <tr><th>Zone</th><th>Signed Target</th><th>Signed Actual</th><th>Live Target</th><th>Live Actual</th><th>Ideal Profile</th></tr>
       </thead>
       <tbody>
         <tr><td>Victoria Island</td><td>4</td><td><input type="number" class="input" id="z-vi-signed" placeholder="0"></td><td>3</td><td><input type="number" class="input" id="z-vi-live" placeholder="0"></td><td class="small">3–4 star, business/transit</td></tr>
-        <tr><td>Ikoyi</td><td>3</td><td><input type="number" class="input" id="z-ikoyi-signed" placeholder="0"></td><td>2</td><td><input type="number" class="input" id="z-ikoyi-live" placeholder="0"></td><td class="small">Boutique / premium, discreet</td></tr>
-        <tr><td>Lekki (Ph1, Ph2, Admiralty, Jakande)</td><td>5</td><td><input type="number" class="input" id="z-lekki-signed" placeholder="0"></td><td>4</td><td><input type="number" class="input" id="z-lekki-live" placeholder="0"></td><td class="small">Midscale–upscale, strong power+WiFi</td></tr>
-        <tr><td>Ajao Estate</td><td>10</td><td><input type="number" class="input" id="z-ajao-signed" placeholder="0"></td><td>3</td><td><input type="number" class="input" id="z-ajao-live" placeholder="0"></td><td class="small">Airport-adjacent, clean standard</td></tr>
-        <tr><td>Maryland</td><td>3</td><td><input type="number" class="input" id="z-maryland-signed" placeholder="0"></td><td>2</td><td><input type="number" class="input" id="z-maryland-live" placeholder="0"></td><td class="small">Reliable midscale, easy access</td></tr>
-        <tr><td>Ilupeju</td><td>3</td><td><input type="number" class="input" id="z-ilupeju-signed" placeholder="0"></td><td>2</td><td><input type="number" class="input" id="z-ilupeju-live" placeholder="0"></td><td class="small">Business hotels, industrial belt</td></tr>
-        <tr class="zone-total"><td><strong>TOTAL</strong></td><td><strong>28</strong></td><td id="z-total-signed">0</td><td><strong>21</strong></td><td id="z-total-live">0</td><td class="small">Signed-to-live target: 75%</td></tr>
+        <tr><td>Ikoyi</td><td>3</td><td><input type="number" class="input" id="z-ikoyi-signed" placeholder="0"></td><td>2</td><td><input type="number" class="input" id="z-ikoyi-live" placeholder="0"></td><td class="small">Boutique / premium</td></tr>
+        <tr><td>Lekki (Ph1/2, Admiralty, Jakande)</td><td>5</td><td><input type="number" class="input" id="z-lekki-signed" placeholder="0"></td><td>4</td><td><input type="number" class="input" id="z-lekki-live" placeholder="0"></td><td class="small">Midscale–upscale</td></tr>
+        <tr><td>Ajao Estate</td><td>10</td><td><input type="number" class="input" id="z-ajao-signed" placeholder="0"></td><td>3</td><td><input type="number" class="input" id="z-ajao-live" placeholder="0"></td><td class="small">Airport-adjacent</td></tr>
+        <tr><td>Maryland</td><td>3</td><td><input type="number" class="input" id="z-maryland-signed" placeholder="0"></td><td>2</td><td><input type="number" class="input" id="z-maryland-live" placeholder="0"></td><td class="small">Reliable midscale</td></tr>
+        <tr><td>Ilupeju</td><td>3</td><td><input type="number" class="input" id="z-ilupeju-signed" placeholder="0"></td><td>2</td><td><input type="number" class="input" id="z-ilupeju-live" placeholder="0"></td><td class="small">Business / industrial</td></tr>
+        <tr class="zone-total"><td><strong>TOTAL</strong></td><td><strong>28</strong></td><td id="z-total-signed">0</td><td><strong>21</strong></td><td id="z-total-live">0</td><td class="small">75% signed-to-live</td></tr>
       </tbody>
     </table>
-    <div class="note">Hotels outside these 6 zones do not count toward October acquisition targets unless pre-approved in writing by Founder.</div>
+    <div class="note">Only hotels in these 6 zones count toward October targets unless pre-approved by Founder.</div>
   </div>
 
-  <!-- Activity KPIs -->
   <div class="section">
-    <h2>3. Activity & Pipeline KPIs (Leading Indicators)</h2>
+    <h2>Activity & Pipeline KPIs</h2>
     <table>
       <thead>
-        <tr><th>Leading KPI</th><th>October Target</th><th>Actual</th><th>Status</th><th>Definition</th></tr>
+        <tr><th>KPI</th><th>Target</th><th>Actual</th><th>Status</th><th>Definition</th></tr>
       </thead>
       <tbody>
-        <tr><td>New hotel prospects qualified</td><td>50</td><td><input type="number" class="input" id="act-prospects" placeholder="0"></td><td><span class="badge" id="st-prospects">—</span></td><td class="small">Named property, zone, decision-maker, fit</td></tr>
-        <tr><td>First meetings / site pitches</td><td>35</td><td><input type="number" class="input" id="act-meetings" placeholder="0"></td><td><span class="badge" id="st-meetings">—</span></td><td class="small">In-person with GM / owner / manager</td></tr>
-        <tr><td>Total field visits (new + existing)</td><td>90</td><td><input type="number" class="input" id="act-visits" placeholder="0"></td><td><span class="badge" id="st-visits">—</span></td><td class="small">Logged with GPS/time, photos, outcome</td></tr>
-        <tr><td>Partnership agreements submitted</td><td>21</td><td><input type="number" class="input" id="act-agreements" placeholder="0"></td><td><span class="badge" id="st-agreements">—</span></td><td class="small">Complete pack: contract, rates, contacts, photos plan</td></tr>
-        <tr><td>Weekly pipeline reviews submitted</td><td>4 of 4</td><td><input type="number" class="input" id="act-weekly" placeholder="0" max="4"></td><td><span class="badge" id="st-weekly">—</span></td><td class="small">One-page score vs target + blockers + route</td></tr>
+        <tr><td>Prospects qualified</td><td>50</td><td><input type="number" class="input" id="act-prospects" placeholder="0"></td><td><span class="badge" id="st-prospects">—</span></td><td class="small">Named property + decision-maker</td></tr>
+        <tr><td>First meetings / pitches</td><td>35</td><td><input type="number" class="input" id="act-meetings" placeholder="0"></td><td><span class="badge" id="st-meetings">—</span></td><td class="small">In-person with GM / owner</td></tr>
+        <tr><td>Total field visits</td><td>90</td><td><input type="number" class="input" id="act-visits" placeholder="0"></td><td><span class="badge" id="st-visits">—</span></td><td class="small">Logged with photos + outcome</td></tr>
+        <tr><td>Agreements submitted</td><td>21</td><td><input type="number" class="input" id="act-agreements" placeholder="0"></td><td><span class="badge" id="st-agreements">—</span></td><td class="small">Complete pack ready</td></tr>
+        <tr><td>Weekly reports</td><td>4 of 4</td><td><input type="number" class="input" id="act-weekly" placeholder="0" max="4"></td><td><span class="badge" id="st-weekly">—</span></td><td class="small">Friday pack submitted</td></tr>
       </tbody>
     </table>
   </div>
 
-  <!-- Weighted Score -->
   <div class="section">
-    <h2>4. Weighted Score Preview (Salary Gate)</h2>
+    <h2>Weighted Score Preview</h2>
     <div class="score-box">
       <div class="score-label">Indicative October Score</div>
-      <strong id="score-display">—</strong> / 100
-      <div id="salary-band" style="margin-top:6px; font-size:14px;"></div>
+      <strong id="score-display">—</strong> <span style="font-size:18px; color:var(--muted);">/ 100</span>
+      <div id="salary-band" style="margin-top:8px; font-size:14px; color:var(--primary);"></div>
     </div>
-    <div class="note" style="margin-top:12px;">
-      <strong>Weights:</strong> A. New LIVE (40%) • B. Existing certified (25%) • C. Revisites (10%) • D. Zone mix (15%) • E. Hygiene (10%)<br>
-      Full salary only at ≥80%. Below 60% = 60% salary. 60–79% = 80% salary. 80–99% = 100%. 100%+ = stretch recognition.<br>
-      <span class="small">Score is calculated from your entered actuals. Zone mix and hygiene are estimated; final score is confirmed by Founder after month-end review.</span>
+    <div class="note">
+      <strong>Weights:</strong> New LIVE 40% • Existing certified 25% • Revisites 10% • Zone mix 15% • Hygiene 10%<br>
+      Full salary at ≥80%. Below 60% = 60% salary. 60–79% = 80%. 80–99% = 100%. 100%+ = stretch.
     </div>
-    <button class="btn" style="margin-top:12px;" onclick="calcScore()">Recalculate Score</button>
+    <button class="btn" style="margin-top:12px;" onclick="calcScore()">Recalculate</button>
   </div>
 
-  <!-- Hotel Tracker -->
   <div class="section">
-    <h2>5. Hotel Prospect & Visit Tracker</h2>
+    <h2>Hotel Prospect & Visit Tracker</h2>
     <div class="hotel-table">
       <table>
         <thead>
-          <tr>
-            <th>Hotel Name</th><th>Zone</th><th>Address / Phone</th><th>Contact</th><th>Rooms</th><th>Status</th><th></th>
-          </tr>
+          <tr><th>Hotel Name</th><th>Zone</th><th>Address / Phone</th><th>Contact</th><th>Rooms</th><th>Status</th><th></th></tr>
         </thead>
         <tbody id="hotelBody"></tbody>
       </table>
     </div>
-    <div style="margin-top:12px;">
+    <div style="margin-top:12px; display:flex; gap:10px;">
       <button class="btn" onclick="addHotelRow()">+ Add Hotel</button>
-      <button class="btn" onclick="saveHotels()">Save Hotels</button>
+      <button class="btn btn-ghost" onclick="saveHotels()">Save Hotels</button>
     </div>
   </div>
 
-  <!-- Weekly Notes -->
   <div class="section">
-    <h2>6. Weekly Report Notes (Friday by 5pm)</h2>
-    <textarea id="weeklyNotes" style="width:100%; min-height:100px; padding:10px; border:1px solid #D6E6F5; border-radius:6px; font-size:13px; font-family:inherit;" placeholder="New this week (by zone): prospects / meetings / signed / live&#10;Existing this week: visited / Ready / Conditional / Suspend&#10;Blockers:&#10;Next week route:"></textarea>
+    <h2>Weekly Report Notes</h2>
+    <textarea id="weeklyNotes" placeholder="New this week (by zone): prospects / meetings / signed / live&#10;Existing: visited / Ready / Conditional / Suspend&#10;Blockers:&#10;Next week route:"></textarea>
     <button class="btn" style="margin-top:10px;" onclick="saveNotes()">Save Notes</button>
   </div>
 
-  <!-- Guest-Ready Reference -->
   <div class="section">
-    <h2>Guest-Ready Standard (10-point checklist)</h2>
+    <h2>Guest-Ready Standard (10 points)</h2>
     <ol class="checklist">
-      <li>Authorised partnership form + rates on file; registered online</li>
-      <li>Named ops contact + working 24h / late-arrival number tested</li>
-      <li>Exterior + reception + ≥2 room photos (refreshed ≤90 days)</li>
-      <li>At least one room type bookable with hourly and/or half-day rates</li>
-      <li>Room clean, AC, functioning bathroom, toiletries, linens</li>
+      <li>Partnership form + rates on file; registered online</li>
+      <li>Named ops contact + working 24h number tested</li>
+      <li>Exterior + reception + ≥2 room photos (≤90 days)</li>
+      <li>At least one room bookable with hourly / half-day rates</li>
+      <li>Room clean, AC, bathroom, toiletries, linens</li>
       <li>Power backup confirmed and described honestly</li>
       <li>WiFi tested on-site</li>
       <li>Front-desk briefed on HPH check-in flow</li>
-      <li>No unresolved safety / security / guest-surprise issues</li>
-      <li>Test path: dummy booking walkthrough completed</li>
+      <li>No unresolved safety or guest-surprise issues</li>
+      <li>Test path completed (dummy booking walkthrough)</li>
     </ol>
-    <div class="note">Partial compliance = Conditional (not Ready). Only hotels passing all 10 count as Live / Guest-Ready.</div>
+    <div class="note">Only hotels passing all 10 items count as Live / Guest-Ready. Partial = Conditional.</div>
   </div>
 </div>
 
@@ -240,14 +394,11 @@ function changeStaff() {
 
 function loadAll() {
   const date = document.getElementById('reportDate').value || todayISO();
-  // Headline + activity
   const data = JSON.parse(localStorage.getItem(storageKey('kpi_'+date)) || '{}');
-  const fields = ['signed','live','revisited','certified','inventory','prospects','meetings','visits','agreements','weekly'];
-  fields.forEach(k => {
+  ['signed','live','revisited','certified','inventory','prospects','meetings','visits','agreements','weekly'].forEach(k => {
     const el = document.getElementById('act-'+k);
     if (el) el.value = data[k] ?? '';
   });
-  // Zones
   const zones = JSON.parse(localStorage.getItem(storageKey('zones_'+date)) || '{}');
   ZONES.forEach(z => {
     const s = document.getElementById('z-'+z+'-signed');
@@ -255,7 +406,6 @@ function loadAll() {
     if (s) s.value = zones[z]?.signed ?? '';
     if (l) l.value = zones[z]?.live ?? '';
   });
-  // Notes
   document.getElementById('weeklyNotes').value = localStorage.getItem(storageKey('notes_'+date)) || '';
   updateStatuses();
   updateZoneTotals();
@@ -270,7 +420,6 @@ function saveAll() {
     data[k] = document.getElementById('act-'+k)?.value || '';
   });
   localStorage.setItem(storageKey('kpi_'+date), JSON.stringify(data));
-
   const zones = {};
   ZONES.forEach(z => {
     zones[z] = {
@@ -279,7 +428,6 @@ function saveAll() {
     };
   });
   localStorage.setItem(storageKey('zones_'+date), JSON.stringify(zones));
-
   updateStatuses();
   updateZoneTotals();
   calcScore();
@@ -315,14 +463,9 @@ function calcScore() {
   const certified = Number(document.getElementById('act-certified').value) || 0;
   const revisited = Number(document.getElementById('act-revisited').value) || 0;
   const weekly = Number(document.getElementById('act-weekly').value) || 0;
-
-  // A: New LIVE (40%) — 16 = 100%
   const a = Math.min(live / 16, 1.2) * 40;
-  // B: Existing certified (25%) — 48 = 100%
   const b = Math.min(certified / 48, 1.2) * 25;
-  // C: Revisites (10%) — 60 = 100%
   const c = Math.min(revisited / 60, 1) * 10;
-  // D: Zone mix (15%) — simple: if all 6 zones have at least 1 signed or live, full marks
   let zonesHit = 0;
   ZONES.forEach(z => {
     const zs = Number(document.getElementById('z-'+z+'-signed')?.value) || 0;
@@ -330,17 +473,14 @@ function calcScore() {
     if (zs >= 1 || zl >= 1) zonesHit++;
   });
   const d = (zonesHit / 6) * 15;
-  // E: Hygiene (10%) — based on weekly reports (4/4 = full)
   const e = (weekly / 4) * 10;
-
   const total = Math.round(a + b + c + d + e);
   document.getElementById('score-display').textContent = total;
-
   let band = '';
-  if (total < 60) band = 'Below 60% → 60% of salary (basic only)';
-  else if (total < 80) band = '60–79% → 80% of salary (partial)';
+  if (total < 60) band = 'Below 60% → 60% of salary';
+  else if (total < 80) band = '60–79% → 80% of salary';
   else if (total < 100) band = '80–99% → 100% of salary';
-  else band = '100%+ → Full salary + stretch recognition';
+  else band = '100%+ → Full salary + stretch';
   document.getElementById('salary-band').textContent = band;
 }
 
@@ -368,12 +508,8 @@ function saveHotels() {
   rows.forEach(row => {
     const inputs = row.querySelectorAll('input, select');
     hotels.push({
-      name: inputs[0].value,
-      zone: inputs[1].value,
-      address: inputs[2].value,
-      contact: inputs[3].value,
-      rooms: inputs[4].value,
-      status: inputs[5].value
+      name: inputs[0].value, zone: inputs[1].value, address: inputs[2].value,
+      contact: inputs[3].value, rooms: inputs[4].value, status: inputs[5].value
     });
   });
   localStorage.setItem(storageKey('hotels'), JSON.stringify(hotels));
@@ -385,9 +521,7 @@ function loadHotels() {
   const saved = localStorage.getItem(storageKey('hotels'));
   document.getElementById('hotelBody').innerHTML = '';
   if (!saved) { addHotelRow(); return; }
-  try {
-    JSON.parse(saved).forEach(h => addHotelRow(h));
-  } catch(e) { addHotelRow(); }
+  try { JSON.parse(saved).forEach(h => addHotelRow(h)); } catch(e) { addHotelRow(); }
 }
 
 function saveNotes() {
@@ -407,7 +541,6 @@ document.addEventListener('DOMContentLoaded', () => {
   loadAll();
 });
 
-// Auto-update totals when zone inputs change
 document.addEventListener('input', e => {
   if (e.target.id && e.target.id.startsWith('z-')) updateZoneTotals();
 });
