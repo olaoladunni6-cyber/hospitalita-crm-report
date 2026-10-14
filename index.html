@@ -3,63 +3,213 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hospitalita & Inovacao | CRM Main</title>
+<title>Hospitalita & Inovacao | CRM</title>
 <style>
-:root { --primary: #1F4E79; --secondary: #2E75B6; --bg: #F4F6F9; --card: #FFFFFF; --text: #2C3E50; --muted: #7F8C8D; }
+:root {
+  --primary: #0F2C4C;
+  --accent: #1A6BB5;
+  --gold: #C9A227;
+  --bg: #F7F9FC;
+  --card: #FFFFFF;
+  --text: #1E2A3A;
+  --muted: #6B7C93;
+}
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); }
-.header { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 28px 32px; text-align: center; }
-.header h1 { font-size: 30px; }
-.header p { opacity: 0.9; margin-top: 6px; }
-.container { max-width: 900px; margin: 0 auto; padding: 32px 24px; }
-.brand-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
-.brand-card { background: var(--card); border-radius: 14px; padding: 28px 20px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.08); cursor: pointer; border-top: 5px solid var(--secondary); }
-.brand-card h3 { font-size: 18px; color: var(--primary); }
-.brand-card p { font-size: 13px; color: var(--muted); }
-.modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); align-items: center; justify-content: center; z-index: 100; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: linear-gradient(160deg, #F0F4F9 0%, #E8EEF6 100%);
+  color: var(--text);
+  min-height: 100vh;
+}
+.header {
+  background: linear-gradient(135deg, var(--primary) 0%, #1A4A7A 100%);
+  color: white;
+  padding: 36px 24px 32px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: -40px; left: 0; right: 0; height: 60px;
+  background: var(--bg);
+  border-radius: 50% 50% 0 0;
+}
+.header h1 {
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+.header p {
+  opacity: 0.85;
+  margin-top: 6px;
+  font-size: 15px;
+}
+.container {
+  max-width: 920px;
+  margin: -20px auto 40px;
+  padding: 0 20px;
+  position: relative;
+  z-index: 2;
+}
+.brand-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+  margin-top: 10px;
+}
+.brand-card {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 28px 20px;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(15,44,76,0.08);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  border: 1px solid rgba(255,255,255,0.8);
+  position: relative;
+  overflow: hidden;
+}
+.brand-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, var(--accent), var(--gold));
+}
+.brand-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(15,44,76,0.12);
+}
+.brand-card h3 {
+  font-size: 18px;
+  color: var(--primary);
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+.brand-card p {
+  font-size: 13px;
+  color: var(--muted);
+}
+.brand-card.disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+.brand-card.disabled:hover { transform: none; box-shadow: 0 6px 20px rgba(15,44,76,0.08); }
+.note {
+  text-align: center;
+  margin-top: 28px;
+  font-size: 13.5px;
+  color: var(--muted);
+  background: white;
+  padding: 14px 18px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.admin-link {
+  text-align: center;
+  margin-top: 16px;
+}
+.admin-link a {
+  color: var(--accent);
+  font-size: 13px;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 20px;
+  transition: background 0.2s;
+}
+.admin-link a:hover { background: rgba(26,107,181,0.08); }
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(15,44,76,0.45);
+  backdrop-filter: blur(4px);
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
 .modal.active { display: flex; }
-.modal-box { background: white; padding: 28px; border-radius: 12px; width: 90%; max-width: 420px; text-align: center; }
-.modal-box input { width: 100%; padding: 12px; border: 1px solid #D6E6F5; border-radius: 8px; font-size: 16px; margin: 10px 0; text-align: center; }
-.modal-box button { background: var(--secondary); color: white; border: none; padding: 12px; border-radius: 8px; width: 100%; cursor: pointer; margin-top: 6px; }
-.modal-box button.secondary { background: #7F8C8D; }
-.error { color: #E74C3C; font-size: 13px; display: none; margin-top: 8px; }
-.success { color: #27AE60; font-size: 13px; display: none; margin-top: 8px; }
-.note { text-align: center; margin-top: 24px; font-size: 13px; color: var(--muted); }
-.admin-link { text-align: center; margin-top: 16px; }
-.admin-link a { color: var(--secondary); font-size: 13px; cursor: pointer; text-decoration: underline; }
-.code-list { margin: 12px 0; }
+.modal-box {
+  background: white;
+  padding: 32px 28px;
+  border-radius: 18px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+.modal-box h3 {
+  color: var(--primary);
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+.modal-box p { font-size: 13px; color: var(--muted); margin-bottom: 12px; }
+.modal-box input {
+  width: 100%;
+  padding: 14px;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 10px;
+  font-size: 16px;
+  margin: 8px 0;
+  text-align: center;
+  outline: none;
+  transition: border 0.2s;
+}
+.modal-box input:focus { border-color: var(--accent); }
+.modal-box button {
+  background: linear-gradient(135deg, var(--accent), #155A9C);
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 10px;
+  width: 100%;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 8px;
+  transition: opacity 0.2s;
+}
+.modal-box button:hover { opacity: 0.92; }
+.error { color: #E74C3C; font-size: 13px; display: none; margin-top: 10px; }
+.success { color: #27AE60; font-size: 13px; display: none; margin-top: 10px; }
 .code-list input { margin: 6px 0; }
 </style>
 </head>
 <body>
-<div class="header"><h1>Hospitalita & Inovacao CRM</h1><p>Select brand • Enter code • Update daily</p></div>
+<div class="header">
+  <h1>Hospitalita & Inovacao</h1>
+  <p>CRM • Select brand • Enter code • Update daily</p>
+</div>
 <div class="container">
   <div class="brand-grid">
-    <div class="brand-card" onclick="openBrand('hotel-per-hour', 'Hotel Per Hour')"><h3>Hotel Per Hour</h3><p id="codeHint">Staff codes</p></div>
-    <div class="brand-card" style="opacity:0.6;cursor:default;"><h3>Posh Hotels</h3><p>Coming soon</p></div>
-    <div class="brand-card" style="opacity:0.6;cursor:default;"><h3>Streetfood NG</h3><p>Coming soon</p></div>
-    <div class="brand-card" style="opacity:0.6;cursor:default;"><h3>Gold Privilege</h3><p>Coming soon</p></div>
+    <div class="brand-card" onclick="openBrand('hotel-per-hour', 'Hotel Per Hour')">
+      <h3>Hotel Per Hour</h3>
+      <p id="codeHint">Staff codes</p>
+    </div>
+    <div class="brand-card disabled"><h3>Posh Hotels</h3><p>Coming soon</p></div>
+    <div class="brand-card disabled"><h3>Streetfood NG</h3><p>Coming soon</p></div>
+    <div class="brand-card disabled"><h3>Gold Privilege</h3><p>Coming soon</p></div>
   </div>
   <div class="note" id="codesDisplay">Hotel Per Hour codes: <strong>—</strong></div>
   <div class="admin-link"><a onclick="openAdmin()">Set / Change Login Codes</a></div>
 </div>
 
-<!-- Staff code modal -->
 <div class="modal" id="codeModal">
   <div class="modal-box">
     <h3 id="modalTitle">Enter Code</h3>
-    <input type="password" id="codeInput" placeholder="Staff Code">
+    <input type="password" id="codeInput" placeholder="Staff Code" autocomplete="off">
     <button onclick="checkCode()">Open Dashboard</button>
     <div class="error" id="errorMsg">Incorrect code</div>
   </div>
 </div>
 
-<!-- Admin modal -->
 <div class="modal" id="adminModal">
   <div class="modal-box">
     <h3>Set Login Codes</h3>
-    <p style="font-size:13px; color:#7F8C8D; margin:8px 0;">Master code required to change staff codes</p>
-    <input type="password" id="adminCode" placeholder="Master Code">
+    <p>Master code required</p>
+    <input type="password" id="adminCode" placeholder="Master Code" autocomplete="off">
     <div class="code-list" id="codeInputs" style="display:none;">
       <input type="text" id="code1" placeholder="Staff Code 1">
       <input type="text" id="code2" placeholder="Staff Code 2">
@@ -138,10 +288,7 @@ function saveCodes() {
     document.getElementById('code2').value.trim().toUpperCase(),
     document.getElementById('code3').value.trim().toUpperCase()
   ].filter(c => c);
-  if (codes.length === 0) {
-    alert('Enter at least one code');
-    return;
-  }
+  if (codes.length === 0) { alert('Enter at least one code'); return; }
   validCodes = codes;
   localStorage.setItem('hph_staff_codes', JSON.stringify(codes));
   loadCodes();
@@ -152,10 +299,10 @@ function saveCodes() {
   }, 1200);
 }
 
-document.getElementById('codeModal').addEventListener('click', function(e) { if (e.target === this) this.classList.remove('active'); });
-document.getElementById('adminModal').addEventListener('click', function(e) { if (e.target === this) this.classList.remove('active'); });
-document.getElementById('codeInput').addEventListener('keypress', function(e) { if (e.key === 'Enter') checkCode(); });
-document.getElementById('adminCode').addEventListener('keypress', function(e) { if (e.key === 'Enter') verifyAdmin(); });
+document.getElementById('codeModal').addEventListener('click', e => { if (e.target === document.getElementById('codeModal')) document.getElementById('codeModal').classList.remove('active'); });
+document.getElementById('adminModal').addEventListener('click', e => { if (e.target === document.getElementById('adminModal')) document.getElementById('adminModal').classList.remove('active'); });
+document.getElementById('codeInput').addEventListener('keypress', e => { if (e.key === 'Enter') checkCode(); });
+document.getElementById('adminCode').addEventListener('keypress', e => { if (e.key === 'Enter') verifyAdmin(); });
 
 loadCodes();
 </script>
