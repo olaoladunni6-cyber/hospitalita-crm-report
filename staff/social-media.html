@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Social Media | Hospitalita CRM — October 2026</title>
+<style>
+:root {
+  --primary: #0F2C4C;
+  --accent: #1A6BB5;
+  --gold: #C9A227;
+  --success: #1E9A5B;
+  --warning: #E67E22;
+  --danger: #E74C3C;
+  --bg: #F5F7FB;
+  --card: #FFFFFF;
+  --text: #1E2A3A;
+  --muted: #6B7C93;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes scorePop { 0% { transform: scale(0.9); opacity: 0.6; } 100% { transform: scale(1); opacity: 1; } }
+.header { background: linear-gradient(135deg, var(--primary) 0%, #1A4A7A 60%, #0D3A66 100%); color: white; padding: 26px 28px 22px; animation: fadeUp 0.4s ease; }
+.header h1 { font-size: 26px; font-weight: 600; letter-spacing: -0.3px; }
+.header p { opacity: 0.85; font-size: 14px; margin-top: 4px; }
+.container { max-width: 1180px; margin: 0 auto; padding: 20px 18px 40px; }
+.back { display: inline-flex; align-items: center; gap: 6px; margin-bottom: 16px; color: var(--accent); text-decoration: none; font-size: 13.5px; font-weight: 500; transition: transform 0.2s; }
+.back:hover { text-decoration: underline; transform: translateX(-2px); }
+.toolbar { background: white; border-radius: 14px; padding: 14px 16px; margin-bottom: 18px; box-shadow: 0 2px 10px rgba(15,44,76,0.06); display: flex; align-items: center; gap: 14px; flex-wrap: wrap; animation: fadeUp 0.45s ease 0.05s backwards; }
+.toolbar label { font-size: 13px; font-weight: 600; color: var(--primary); }
+.toolbar input[type="date"] { padding: 8px 12px; border: 1.5px solid #E2E8F0; border-radius: 8px; font-size: 13.5px; outline: none; }
+.toolbar input:focus { border-color: var(--accent); }
+.btn { background: linear-gradient(135deg, var(--accent), #155A9C); color: white; border: none; padding: 9px 16px; border-radius: 8px; font-size: 13.5px; font-weight: 600; cursor: pointer; transition: transform 0.15s, opacity 0.2s; }
+.btn:hover { opacity: 0.95; }
+.btn:active { transform: scale(0.97); }
+.btn-ghost { background: #F1F5F9; color: var(--primary); }
+.section { background: var(--card); border-radius: 14px; padding: 20px 18px; margin-bottom: 18px; box-shadow: 0 2px 12px rgba(15,44,76,0.06); border: 1px solid rgba(226,232,240,0.6); animation: fadeUp 0.45s ease backwards; }
+.section h2 { font-size: 16.5px; color: var(--primary); margin-bottom: 14px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+.section h2::before { content: ''; width: 4px; height: 18px; background: linear-gradient(180deg, var(--accent), var(--gold)); border-radius: 2px; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { text-align: left; padding: 10px 8px; background: #F8FAFC; color: var(--primary); font-weight: 600; border-bottom: 2px solid #E8EEF4; }
+td { padding: 9px 8px; border-bottom: 1px solid #F1F5F9; vertical-align: middle; }
+.badge { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 11.5px; font-weight: 600; min-width: 68px; text-align: center; }
+.badge.on-track { background: #E8F8EF; color: var(--success); }
+.badge.at-risk { background: #FEF5E7; color: var(--warning); }
+.badge.behind { background: #FDEDEC; color: var(--danger); }
+.badge.ahead { background: #EBF5FB; color: var(--accent); }
+.note { font-size: 12.5px; color: var(--muted); margin-top: 14px; padding: 12px 14px; background: #F8FAFC; border-radius: 10px; border-left: 3px solid var(--accent); }
+.input { width: 100%; max-width: 78px; padding: 6px 8px; border: 1.5px solid #E2E8F0; border-radius: 6px; font-size: 13px; text-align: right; outline: none; }
+.input:focus { border-color: var(--accent); }
+.score-box { background: linear-gradient(135deg, #EBF5FB 0%, #F0F7FF 100%); border-radius: 12px; padding: 18px; margin-top: 8px; text-align: center; }
+.score-box strong { font-size: 32px; color: var(--primary); font-weight: 700; display: inline-block; animation: scorePop 0.35s ease; }
+.score-label { font-size: 13px; color: var(--muted); margin-bottom: 4px; }
+.small { font-size: 11.5px; color: var(--muted); }
+textarea { width: 100%; min-height: 100px; padding: 12px; border: 1.5px solid #E2E8F0; border-radius: 10px; font-size: 13.5px; font-family: inherit; outline: none; resize: vertical; }
+@media (max-width: 768px) {
+  .header { padding: 20px 16px 18px; }
+  .header h1 { font-size: 22px; }
+  .container { padding: 14px 12px 30px; }
+  .toolbar { padding: 12px; gap: 10px; }
+  .section { padding: 16px 12px; }
+  table { font-size: 12.5px; display: block; overflow-x: auto; }
+  th, td { padding: 8px 6px; white-space: nowrap; }
+  .btn { padding: 10px 14px; min-height: 44px; }
+}
+@media (max-width: 480px) {
+  .toolbar { flex-direction: column; align-items: stretch; }
+  .btn { width: 100%; }
+}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>Social Media — Content & Creatif CRM</h1>
+  <p>October 2026 • Posh • Amazonas • Creatif • Streetfood</p>
+</div>
+<div class="container">
+  <a class="back" href="https://htmlpreview.github.io/?https://github.com/olaoladunni6-cyber/hospitalita-crm-report/blob/main/index.html">← Back to Main CRM</a>
+
+  <div class="toolbar">
+    <label>Staff</label>
+    <span id="staffLabel" style="font-weight:600; color:var(--primary); padding:6px 10px; background:#F1F5F9; border-radius:6px;">—</span>
+    <label>Date</label>
+    <input type="date" id="reportDate">
+    <button class="btn" onclick="loadAll()">Load</button>
+    <button class="btn" onclick="saveAll()">Save All</button>
+    <span id="save-msg" style="font-size:13px; color:var(--success); display:none;">✓ Saved</span>
+  </div>
+
+  <div class="section">
+    <h2>Workstream A — Social Content (60 pts)</h2>
+    <table>
+      <thead><tr><th>KPI</th><th>Target</th><th>Actual</th><th>Status</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Published pieces (all 4 brands)</td><td>80</td><td><input type="number" class="input" id="act-pieces" placeholder="0"></td><td><span class="badge" id="st-pieces">—</span></td><td class="small">48 Reels + 24 static + 8 Stories series</td></tr>
+        <tr><td>Posting cadence</td><td>No silent >48h</td><td><input type="number" class="input" id="act-cadence" placeholder="0"></td><td><span class="badge" id="st-cadence">—</span></td><td class="small">≥1 Reel per brand per week</td></tr>
+        <tr><td>Net new followers (4 accounts)</td><td>+12% or +2,000</td><td><input type="number" class="input" id="act-followers" placeholder="0"></td><td><span class="badge" id="st-followers">—</span></td><td class="small">Whichever is lower</td></tr>
+        <tr><td>Avg engagement rate (IG)</td><td>≥3.0%</td><td><input type="number" step="0.1" class="input" id="act-er" placeholder="0"></td><td><span class="badge" id="st-er">—</span></td><td class="small">Likes+comments+shares+saves / reach</td></tr>
+        <tr><td>Reel reach (6 >5k, 1 >20k)</td><td>6 / 1</td><td><input type="number" class="input" id="act-reach" placeholder="0"></td><td><span class="badge" id="st-reach">—</span></td><td class="small">Enter count of Reels >5k</td></tr>
+        <tr><td>Community response SLA</td><td>2hr</td><td><input type="number" class="input" id="act-sla" placeholder="0"></td><td><span class="badge" id="st-sla">—</span></td><td class="small">% of enquiries answered in time</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>Commercial Conversion from Social (26 pts)</h2>
+    <table>
+      <thead><tr><th>KPI</th><th>Target</th><th>Actual</th><th>Status</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Tracked social-origin leads</td><td>120</td><td><input type="number" class="input" id="act-leads" placeholder="0"></td><td><span class="badge" id="st-leads">—</span></td><td class="small">Name + phone + brand + intent</td></tr>
+        <tr><td>Posh: social room-nights</td><td>25</td><td><input type="number" class="input" id="act-posh" placeholder="0"></td><td><span class="badge" id="st-posh">—</span></td><td class="small">Attributed to social / WhatsApp</td></tr>
+        <tr><td>Amazonas: covers / packages</td><td>80 covers or 12 pkgs</td><td><input type="number" class="input" id="act-amazonas" placeholder="0"></td><td><span class="badge" id="st-amazonas">—</span></td><td class="small">Enter covers</td></tr>
+        <tr><td>Streetfood: social orders</td><td>150</td><td><input type="number" class="input" id="act-streetfood" placeholder="0"></td><td><span class="badge" id="st-streetfood">—</span></td><td class="small">Promo code STREETOCT</td></tr>
+        <tr><td>Google reviews (Posh + Amazonas)</td><td>+20</td><td><input type="number" class="input" id="act-reviews" placeholder="0"></td><td><span class="badge" id="st-reviews">—</span></td><td class="small">Respond within 48h</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>Workstream B — Creatif Events (40 pts)</h2>
+    <table>
+      <thead><tr><th>KPI</th><th>Target</th><th>Actual</th><th>Status</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Locked October event calendar</td><td>≥8 moments by 3 Oct</td><td><input type="number" class="input" id="act-calendar" placeholder="0"></td><td><span class="badge" id="st-calendar">—</span></td><td class="small">Published by 3 Oct</td></tr>
+        <tr><td>Events delivered to brief</td><td>6</td><td><input type="number" class="input" id="act-delivered" placeholder="0"></td><td><span class="badge" id="st-delivered">—</span></td><td class="small">Start on time + elements present</td></tr>
+        <tr><td>Paid attendance / revenue</td><td>180 guests or ₦1.5m</td><td><input type="number" class="input" id="act-attendance" placeholder="0"></td><td><span class="badge" id="st-attendance">—</span></td><td class="small">Enter paying guests</td></tr>
+        <tr><td>Private quotes sent / confirmed</td><td>8 quotes / 3 confirmed</td><td><input type="number" class="input" id="act-quotes" placeholder="0"></td><td><span class="badge" id="st-quotes">—</span></td><td class="small">Enter confirmed</td></tr>
+        <tr><td>Guest contacts captured</td><td>≥150</td><td><input type="number" class="input" id="act-contacts" placeholder="0"></td><td><span class="badge" id="st-contacts">—</span></td><td class="small">Name + phone + ticket type</td></tr>
+        <tr><td>December pipeline (concepts / holds)</td><td>10 concepts + 5 holds</td><td><input type="number" class="input" id="act-pipeline" placeholder="0"></td><td><span class="badge" id="st-pipeline">—</span></td><td class="small">Enter holds/deposits</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>Weighted Score Preview</h2>
+    <div class="score-box">
+      <div class="score-label">Indicative October Score</div>
+      <strong id="score-display">—</strong> <span style="font-size:18px; color:var(--muted);">/ 100</span>
+      <div id="salary-band" style="margin-top:8px; font-size:14px; color:var(--primary);"></div>
+    </div>
+    <div class="note">
+      <strong>Salary gate:</strong> 90–100 = 100% + bonus eligibility • 80–89 = 100% • 70–79 = 90% • 60–69 = 75% • Below 60 = 60%<br>
+      Score is indicative. Final score confirmed by management after month-end review (Friday 6 November).
+    </div>
+    <button class="btn" style="margin-top:12px;" onclick="calcScore()">Recalculate</button>
+  </div>
+
+  <div class="section">
+    <h2>Weekly Notes (Friday 4pm one-pager)</h2>
+    <textarea id="weeklyNotes" placeholder="Posts published this week:&#10;Top 3 assets:&#10;Leads / bookings:&#10;Next week lock:&#10;Event status:"></textarea>
+    <button class="btn" style="margin-top:10px;" onclick="saveNotes()">Save Notes</button>
+  </div>
+</div>
+
+<script>
+const KEYS = ['pieces','cadence','followers','er','reach','sla','leads','posh','amazonas','streetfood','reviews','calendar','delivered','attendance','quotes','contacts','pipeline'];
+const TARGETS = { pieces:80, cadence:4, followers:2000, er:3, reach:6, sla:100, leads:120, posh:25, amazonas:80, streetfood:150, reviews:20, calendar:8, delivered:6, attendance:180, quotes:3, contacts:150, pipeline:5 };
+let STAFF_CODE = 'SM1';
+
+function todayISO() { return new Date().toISOString().slice(0,10); }
+function storageKey(type) { return 'sm2026_' + STAFF_CODE + '_' + type; }
+function getStatus(actual, target) {
+  if (!target || target <= 0) return { text: '—', cls: '' };
+  const pct = (Number(actual)||0) / target * 100;
+  if (pct >= 100) return { text: 'Ahead', cls: 'ahead' };
+  if (pct >= 80) return { text: 'On Track', cls: 'on-track' };
+  if (pct >= 60) return { text: 'At Risk', cls: 'at-risk' };
+  return { text: 'Behind', cls: 'behind' };
+}
+function setBadge(id, actual, target) {
+  const s = getStatus(actual, target);
+  const el = document.getElementById(id);
+  if (el) { el.textContent = s.text; el.className = 'badge ' + s.cls; }
+}
+
+function loadAll() {
+  const date = document.getElementById('reportDate').value || todayISO();
+  const data = JSON.parse(localStorage.getItem(storageKey('kpi_'+date)) || '{}');
+  KEYS.forEach(k => {
+    const el = document.getElementById('act-'+k);
+    if (el) el.value = data[k] ?? '';
+  });
+  document.getElementById('weeklyNotes').value = localStorage.getItem(storageKey('notes_'+date)) || '';
+  updateStatuses();
+  calcScore();
+}
+
+function saveAll() {
+  const date = document.getElementById('reportDate').value || todayISO();
+  const data = {};
+  KEYS.forEach(k => { data[k] = document.getElementById('act-'+k)?.value || ''; });
+  localStorage.setItem(storageKey('kpi_'+date), JSON.stringify(data));
+  updateStatuses();
+  calcScore();
+  const msg = document.getElementById('save-msg');
+  msg.style.display = 'inline';
+  msg.style.opacity = '1';
+  setTimeout(() => { msg.style.opacity = '0'; setTimeout(() => msg.style.display = 'none', 300); }, 1500);
+}
+
+function updateStatuses() {
+  KEYS.forEach(k => setBadge('st-'+k, document.getElementById('act-'+k)?.value, TARGETS[k]));
+}
+
+function calcScore() {
+  // Simplified indicative score based on key commercial + volume KPIs
+  const pieces = Number(document.getElementById('act-pieces').value) || 0;
+  const leads = Number(document.getElementById('act-leads').value) || 0;
+  const posh = Number(document.getElementById('act-posh').value) || 0;
+  const amazonas = Number(document.getElementById('act-amazonas').value) || 0;
+  const streetfood = Number(document.getElementById('act-streetfood').value) || 0;
+  const delivered = Number(document.getElementById('act-delivered').value) || 0;
+  const attendance = Number(document.getElementById('act-attendance').value) || 0;
+
+  const a = Math.min(pieces/80,1)*16 + Math.min(leads/120,1)*6 + Math.min(posh/25,1)*6 + Math.min(amazonas/80,1)*6 + Math.min(streetfood/150,1)*4;
+  const b = Math.min(delivered/6,1)*8 + Math.min(attendance/180,1)*8;
+  const total = Math.round(a + b);
+  const scoreEl = document.getElementById('score-display');
+  scoreEl.textContent = total;
+  scoreEl.style.animation = 'none';
+  void scoreEl.offsetWidth;
+  scoreEl.style.animation = 'scorePop 0.35s ease';
+
+  let band = '';
+  if (total >= 90) band = '90–100 → 100% salary + bonus eligibility';
+  else if (total >= 80) band = '80–89 → 100% salary';
+  else if (total >= 70) band = '70–79 → 90% salary';
+  else if (total >= 60) band = '60–69 → 75% salary';
+  else band = 'Below 60 → 60% salary';
+  document.getElementById('salary-band').textContent = band;
+}
+
+function saveNotes() {
+  const date = document.getElementById('reportDate').value || todayISO();
+  localStorage.setItem(storageKey('notes_'+date), document.getElementById('weeklyNotes').value);
+  const msg = document.getElementById('save-msg');
+  msg.style.display = 'inline';
+  setTimeout(() => msg.style.display = 'none', 1500);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const saved = localStorage.getItem('sm_selected_staff');
+  if (saved) STAFF_CODE = saved;
+  document.getElementById('staffLabel').textContent = STAFF_CODE || 'Staff';
+  document.getElementById('reportDate').value = todayISO();
+  loadAll();
+});
+</script>
+</body>
+</html>
