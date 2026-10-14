@@ -120,8 +120,11 @@ body {
       <h3>Social Media</h3>
       <p>Enter your staff code</p>
     </div>
+    <div class="brand-card" onclick="openBrand('creatif', 'Creatif Events')">
+      <h3>Creatif Events</h3>
+      <p>Enter your staff code</p>
+    </div>
     <div class="brand-card disabled"><h3>Posh Hotels</h3><p>Coming soon</p></div>
-    <div class="brand-card disabled"><h3>Streetfood NG</h3><p>Coming soon</p></div>
   </div>
   <div class="note">Select your brand and enter the code provided by management.</div>
   <div class="admin-link"><a onclick="openAdmin()">Set / Change Login Codes</a></div>
@@ -153,6 +156,11 @@ body {
         <input type="text" id="sm1" placeholder="SM Code 1">
         <input type="text" id="sm2" placeholder="SM Code 2">
       </div>
+      <p style="font-size:12px; margin-top:10px;"><strong>Creatif Events</strong></p>
+      <div class="code-list">
+        <input type="text" id="cr1" placeholder="CR Code 1">
+        <input type="text" id="cr2" placeholder="CR Code 2">
+      </div>
     </div>
     <button id="adminBtn" onclick="verifyAdmin()">Verify</button>
     <div class="error" id="adminError">Incorrect master code</div>
@@ -164,15 +172,19 @@ body {
 const MASTER_CODE = 'HPHADMIN';
 const HPH_DASH = 'https://htmlpreview.github.io/?https://github.com/olaoladunni6-cyber/hospitalita-crm-report/blob/main/staff/hotel-per-hour.html';
 const SM_DASH = 'https://htmlpreview.github.io/?https://github.com/olaoladunni6-cyber/hospitalita-crm-report/blob/main/staff/social-media.html';
+const CR_DASH = 'https://htmlpreview.github.io/?https://github.com/olaoladunni6-cyber/hospitalita-crm-report/blob/main/staff/creatif.html';
 let currentBrand = '';
 let hphCodes = ['HPH1','HPH2','HPH3'];
 let smCodes = ['SM1','SM2'];
+let crCodes = ['CR1','CR2'];
 
 function loadCodes() {
   const h = localStorage.getItem('hph_staff_codes');
   const s = localStorage.getItem('sm_staff_codes');
   if (h) { try { hphCodes = JSON.parse(h); } catch(e) {} }
   if (s) { try { smCodes = JSON.parse(s); } catch(e) {} }
+  const c = localStorage.getItem('cr_staff_codes');
+  if (c) { try { crCodes = JSON.parse(c); } catch(e) {} }
 }
 
 function openBrand(brand, name) {
@@ -192,6 +204,9 @@ function checkCode() {
   } else if (currentBrand === 'social-media' && smCodes.includes(entered)) {
     localStorage.setItem('sm_selected_staff', entered);
     window.location.href = SM_DASH;
+  } else if (currentBrand === 'creatif' && crCodes.includes(entered)) {
+    localStorage.setItem('cr_selected_staff', entered);
+    window.location.href = CR_DASH;
   } else {
     document.getElementById('errorMsg').style.display = 'block';
   }
@@ -218,6 +233,8 @@ function verifyAdmin() {
     document.getElementById('hph3').value = hphCodes[2] || '';
     document.getElementById('sm1').value = smCodes[0] || '';
     document.getElementById('sm2').value = smCodes[1] || '';
+    document.getElementById('cr1').value = crCodes[0] || '';
+    document.getElementById('cr2').value = crCodes[1] || '';
     document.getElementById('adminBtn').textContent = 'Save Codes';
     document.getElementById('adminBtn').onclick = saveCodes;
     document.getElementById('adminCode').disabled = true;
@@ -236,9 +253,14 @@ function saveCodes() {
     document.getElementById('sm1').value.trim().toUpperCase(),
     document.getElementById('sm2').value.trim().toUpperCase()
   ].filter(c => c);
-  if (hphCodes.length === 0 && smCodes.length === 0) { alert('Enter at least one code'); return; }
+  crCodes = [
+    document.getElementById('cr1').value.trim().toUpperCase(),
+    document.getElementById('cr2').value.trim().toUpperCase()
+  ].filter(c => c);
+  if (hphCodes.length === 0 && smCodes.length === 0 && crCodes.length === 0) { alert('Enter at least one code'); return; }
   localStorage.setItem('hph_staff_codes', JSON.stringify(hphCodes));
   localStorage.setItem('sm_staff_codes', JSON.stringify(smCodes));
+  localStorage.setItem('cr_staff_codes', JSON.stringify(crCodes));
   document.getElementById('adminSuccess').style.display = 'block';
   setTimeout(() => {
     document.getElementById('adminModal').classList.remove('active');
