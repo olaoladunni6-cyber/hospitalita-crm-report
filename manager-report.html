@@ -114,10 +114,25 @@ function showDetail(i) {
   const panel = document.getElementById('detailPanel');
   let html = '<strong>' + (r.staff||'') + ' — ' + (r.brand||'') + '</strong> &nbsp;|&nbsp; Date: ' + (r.date||'').slice(0,10) + '<br><br>';
   if (r.kpis) {
-    html += '<strong>Full KPIs:</strong><br>';
-    Object.entries(r.kpis).forEach(([k,v]) => { if (v) html += '• ' + k + ': <strong>' + v + '</strong><br>'; });
+    html += '<strong>KPIs:</strong><br>';
+    Object.entries(r.kpis).forEach(([k,v]) => {
+      if (k === 'zones' || k === 'hotels') return;
+      if (v) html += '• ' + k + ': <strong>' + v + '</strong><br>';
+    });
+    if (r.kpis.zones) {
+      html += '<br><strong>Zones:</strong><br>';
+      Object.entries(r.kpis.zones).forEach(([z, vals]) => {
+        html += '• ' + z + ' — Signed: ' + (vals.signed||0) + ', Live: ' + (vals.live||0) + '<br>';
+      });
+    }
+    if (r.kpis.hotels && r.kpis.hotels.length) {
+      html += '<br><strong>Hotels:</strong><br>';
+      r.kpis.hotels.forEach(h => {
+        if (h.name) html += '• ' + h.name + ' (' + (h.zone||'') + ') — ' + (h.status||'') + '<br>';
+      });
+    }
   }
-  if (r.notes) html += '<br><strong>Notes:</strong><br>' + r.notes.replace(/\n/g,'<br>');
+  if (r.notes) html += '<br><strong>Notes:</strong><br>' + (r.notes||'').replace(/\n/g,'<br>');
   panel.innerHTML = html;
   panel.style.display = 'block';
   panel.scrollIntoView({behavior:'smooth'});
