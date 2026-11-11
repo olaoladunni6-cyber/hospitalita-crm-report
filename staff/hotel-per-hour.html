@@ -447,7 +447,17 @@ function saveAll() {
   ['signed','live','revisited','certified','inventory','prospects','meetings','visits','agreements','weekly'].forEach(k => {
     data[k] = document.getElementById('act-'+k)?.value || '';
   });
-  localStorage.setItem(storageKey('kpi_'+date), JSON.stringify(data)); syncToSheet('Hotel Per Hour', STAFF_CODE, date, data, document.getElementById('weeklyNotes')?.value || '');
+  localStorage.setItem(storageKey('kpi_'+date), JSON.stringify(data));
+  const zones = {};
+  ZONES.forEach(z => {
+    zones[z] = {
+      signed: document.getElementById('z-'+z+'-signed')?.value || '',
+      live: document.getElementById('z-'+z+'-live')?.value || ''
+    };
+  });
+  const hotels = JSON.parse(localStorage.getItem(storageKey('hotels')) || '[]');
+  const full = { ...data, zones, hotels };
+  syncToSheet('Hotel Per Hour', STAFF_CODE, date, full, document.getElementById('weeklyNotes')?.value || '');
   const zones = {};
   ZONES.forEach(z => {
     zones[z] = {
