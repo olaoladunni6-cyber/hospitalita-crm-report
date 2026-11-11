@@ -447,7 +447,7 @@ function saveAll() {
   ['signed','live','revisited','certified','inventory','prospects','meetings','visits','agreements','weekly'].forEach(k => {
     data[k] = document.getElementById('act-'+k)?.value || '';
   });
-  localStorage.setItem(storageKey('kpi_'+date), JSON.stringify(data));
+  localStorage.setItem(storageKey('kpi_'+date), JSON.stringify(data)); syncToSheet('Hotel Per Hour', STAFF_CODE, date, data, document.getElementById('weeklyNotes')?.value || '');
   const zones = {};
   ZONES.forEach(z => {
     zones[z] = {
@@ -581,6 +581,16 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('input', e => {
   if (e.target.id && e.target.id.startsWith('z-')) updateZoneTotals();
 });
+function syncToSheet(brand, staff, date, kpis, notes) {
+  const payload = { brand, staff, date, kpis, notes: notes || "" };
+  fetch("https://script.google.com/macros/s/AKfycbynsHj7IrmVGfuG_nYvg6zpumzx0cr3-0931JElVErAR7AhCRzB7iVa917754UrFF4uFA/exec", {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "text/plain" },
+    body: JSON.stringify(payload)
+  }).catch(() => {});
+}
+
 </script>
 </body>
 </html>
