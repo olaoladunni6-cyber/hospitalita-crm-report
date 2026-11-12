@@ -458,13 +458,6 @@ function saveAll() {
   const hotels = JSON.parse(localStorage.getItem(storageKey('hotels')) || '[]');
   const full = { ...data, zones, hotels };
   syncToSheet('Hotel Per Hour', STAFF_CODE, date, full, document.getElementById('weeklyNotes')?.value || '');
-  const zones = {};
-  ZONES.forEach(z => {
-    zones[z] = {
-      signed: document.getElementById('z-'+z+'-signed')?.value || '',
-      live: document.getElementById('z-'+z+'-live')?.value || ''
-    };
-  });
   localStorage.setItem(storageKey('zones_'+date), JSON.stringify(zones));
   updateStatuses();
   updateZoneTotals();
