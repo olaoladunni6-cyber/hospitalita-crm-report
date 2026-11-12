@@ -456,7 +456,9 @@ function saveAll() {
     };
   });
   const hotels = JSON.parse(localStorage.getItem(storageKey('hotels')) || '[]');
-  const full = { ...data, zones, hotels };
+  const scoreEl = document.getElementById('score-display');
+  const score = scoreEl ? scoreEl.textContent : '';
+  const full = { ...data, zones, hotels, score };
   syncToSheet('Hotel Per Hour', STAFF_CODE, date, full, document.getElementById('weeklyNotes')?.value || '');
   localStorage.setItem(storageKey('zones_'+date), JSON.stringify(zones));
   updateStatuses();
